@@ -1,0 +1,904 @@
+= Interacción y Experiencia de Usuario
+:showtitle:
+:lang: es
+:icons: font
+:sectnums:
+:sectnumlevels: 2
+:toc: left
+:toc-title: Contenidos
+:toclevels: 3
+//:toc-placement: preamble
+:imagesdir: ./images
+:example-caption: Ejemplo
+:figure-caption: Figura
+:caution-caption: Atención
+:important-caption: Importante
+:note-caption: Nota
+:tip-caption: Sugerencia
+:warning-caption: Aviso
+:table-caption: Tabla
+:appendix-caption: Apéndice
+:xrefstyle: short
+:linkattrs:
+
+image::cs_map.png[Map of Computer Science,800,600,link=https://youtu.be/SzJ46YA_RaA]
+
+
+== PRESENTACIÓN
+
+---
+
+=== Datos de la asignatura
+
+==== Temario
+
+1. *End-user development* y lenguajes visuales y de bloques
+2. *Interacción multimodal* y verbal
+3. *Entornos inmersivos*: realidad virtual, aumentada y mixta
+4. *Videojuegos y aprendizaje*: ludificación y evaluación
+5. *Usabilidad y experiencia de usuario*
+
+==== Evaluación
+
+* Evaluación continua del trabajo en la asignatura
+
+.Procedimiento
+****
+* Elaboración, entrega y defensa de un trabajo práctico para cada uno de los siguientes bloques a lo largo del curso
+  - *End-user development*: Aplicación móvil con AppInventor
+  - *Interacción verbal*: Agente conversacional y workflow con N8N
+  - *Entornos inmersivos*: AR/VR/XR con Unity
+  - *Videojuegos y aprendizaje*: Twine
+  - *Usabilidad y experiencia de usuario*: Evaluación de _User eXperience_ (UX)
+* Calificación: *20%* entrega y defensa de cada bloque
+* La defensa de algunos bloques podrá hacerse con la grabación de un video
+****
+
+==== Bibliografía
+
+* Shneiderman, Plaisant, Cohen, Jacobs, Elmqvist (2018). _Designing the User Interface. Strategies for Effective Human-Computer Interaction_, 6th Edition, Pearson.
+* A. J. Ko: _User Interface Software and Technology_, http://faculty.washington.edu/ajko/books/user-interface-software-and-technology/index.html[http://faculty.washington.edu/ajko/books/user-interface-software-and-technology/index.html, window=_blank]
+* Benyon, D. (2013): _Designing Interactive Systems. A comprehensive guide to HCI, UX and interaction design_, Addison Wesley.
+
+---
+
+=== Un poco de historia
+
+.Cronología
+****
+[horizontal]
+*1940's*:: <<_vannevar_bush,Vannevar Bush>> -- Visionario del hipertexto e internet
+
+*1960's*:: <<_douglas_engelbart,Douglas Engelbart>> -- Stanford SRI, Inventor del ratón
+
+*1970's*:: <<_alan_kay,Alan Kay>> -- Xerox PARC, WIMP
+
+    - Diciembre 1979 ⇒ <<_steve_jobs,Steve Jobs>> visita el Xerox PARC
+
+*1983-1984*:: Apple Computer -- Lisa + Macintosh
+
+*1985-1995*:: <<_bill_gates,Bill Gates>> -- Microsoft Windows 1.0 / 3.1 / 95
+
+*2000's*:: <<_steve_jobs_again,Steve Jobs (again)>>
+
+    - 2007 ⇒ iPhone, pantalla táctil capacitiva
+
+*2017-2020*:: Deep learning, transformers
+
+    - 2022 ⇒ <<_sam_altman,Sam Altman>> -- ChatGPT
+****
+
+
+NOTE: *Historia de las interfaces de usuario (WIMP)*
+****
+> A user interface is the space where interactions between humans and machines occur
+> 
+> https://history.user-interface.io/
+****
+
+
+
+==== Vannevar Bush 
+
+Fue un físico estadounidense que trabajó en el MIT y en el Laboratorio de Investigación de la Oficina de Servicios de Guerra durante la Segunda Guerra Mundial. En 1945 publicó un artículo en la revista _Atlantic Monthly_ titulado _As We May Think_ en el que propuso un sistema de almacenamiento y recuperación de información basado en la idea de un hipotético dispositivo denominado _memex_.
+
+.1940's: As We May Think
+****
+[.float-group]
+--
+[.left]
+image::Vannevar_Bush.png[Vannevar Bush,width=280,height=240]
+
+[.right]
+image::AsWeMayThink.png[As We May Think,width=366,height=387]
+--
+****
+
+.Visionario del hipertexto y la Internet
+****
+[quote, Vannevar Bush, As We May Think]
+____
+Consider a future device for individual use, which is a sort of mechanized private file and library. It needs a name, and, to coin one at random, "memex" will do. A *memex is a device* in which an individual stores all his books, records, and communications, and which is mechanized so that it may be consulted with exceeding speed and flexibility. It is an *enlarged intimate supplement to his memory*...
+____
+****
+
+*Memex* fue el hipotético dispositivo hipertextual propuesto por Bush, un sistema de almacenamiento y recuperación de información que permitía la navegación entre documentos y la creación de hipervínculos entre ellos. Bush propuso que el dispositivo fuera capaz de almacenar y recuperar información de forma automática, de forma que el usuario pudiera concentrarse en la búsqueda de información y no en la gestión de la misma.
+
+.Memex animation [2'33'']
+****
+video::c539cK58ees[youtube, width=640, height=480]
+****
+
+==== Ivan Sutherland
+
+En 1963, en el MIT, desarrolló el primer prototipo de un dispositivo de interacción humano-computador, el _Sketchpad_, que permitía al usuario interactuar con la computadora dibujando en una pantalla. Este dispositivo fue el antecedente de los sistemas de interacción gráfica de hoy en día.
+
+.1960's: Sketchpad
+****
+
+[.lead]
+
+.Premio BBVA 2019 Fronteras del conocimiento en categoría TIC a Ivan Sutherland [2'35'']
+video::oNmJUcqISzQ[youtube, width=640, height=480]
+
+.Steven A. Coons explicando Sketchpad [2'35'']
+video::6orsmFndx_o[youtube, width=640, height=480, start=45, end=200]
+
+****
+
+==== Douglas Engelbart
+
+En 1962, en el Stanford Research Institute, desarrolló el _NLS_ (_oN-Line System_), un sistema de interacción humano-computador que permitía al usuario interactuar con la computadora a través de un teclado, un ratón y una pantalla. Este sistema fue el antecedente de los sistemas de interacción gráfica de hoy en día.
+
+==== Alan Kay
+
+En 1968, en el Xerox Palo Alto Research Center (PARC), desarrolló _Smalltalk_, un lenguaje de programación orientado a objetos que permitía la creación de interfaces gráficas de usuario. Este lenguaje fue el antecedente de los lenguajes de programación orientados a objetos de hoy en día.
+
+En 1973, Xerox desarrolló Xerox Alto, el primer prototipo con interfaces gráficas de usuario WIMP (Windows, Icons, Menus, Pointer).
+
+.WYSIWYG
+****
+
+.Interfaz WIMP de Xerox Alto (1973) [2'15"]
+video::J33pVRdxWbw[youtube, width=640, height=480, start=135, end=270]
+
+//.Demo de ventanas y ratón en Palo Alto [55'']
+//video::9H79_kKzmFs[youtube, width=640, height=480, start=190, end=245]
+
+.Xerox - The Company that threw away everything [30'']
+video::54CyHBI1d6Y[youtube, width=640, height=480, start=614, end=646]
+
+// .Interfaz WIMP de Xerox Star (1981) [1']
+// video::9qtd8Hc90Hw[youtube, width=640, height=480, start=1273, end=1333]
+
+****
+
+La interfaz WIMP de Xerox Alto fue la primera GUI que permitía la creación de ventanas, iconos, menús y ratón. Esta interfaz fue el antecedente de las interfaces gráficas de usuario de hoy en día.
+Xerox Alto (1973) no fue un producto comercial, pero su tecnología fue licenciada primero por Apple y luego por Microsoft para sus propios sistemas operativos. Xerox Star (1981) fue el primer producto comercial que utilizó la interfaz WIMP, pero no tuvo éxito en el mercado debido a su precio.
+
+NOTE: WIMP
+****
+WIMP = Windows, Icons, Menus and Pointer
+****
+
+==== Steve Jobs
+
+Steve Jobs visitó el PARC de Xerox en 1979 y se llevó consigo la idea de la interfaz gráfica de usuario WIMP.
+
+En 1983, Jobs presentó el _Apple Lisa_, el primer ordenador personal de Apple que operaba con interfaz gráfica de usuario WIMP y un ratón.
+La tecnología del Lisa fue utilizada posteriormente en el _Apple Macintosh_ (1984), que se convirtió en el primer ordenador personal de éxito comercial con interfaz gráfica de usuario WIMP.
+
+.How Steve Jobs got the ideas of GUI from XEROX [9'40"]
+video::J33pVRdxWbw[youtube, width=640, height=480, start=360]
+
+.Interfaces WIMP
+****
+
+.Interfaz WIMP del Apple Macintosh (1987) [1'21'']
+video::9qtd8Hc90Hw[youtube, width=640, height=480, start=1692, end=1773]
+
+TIP: Ver la película "Steve Jobs"
+
+****
+
+==== Bill Gates 
+
+Bill Gates incorpora la interfaz WIMP a Windows. 
+
+NOTE: *Bill Gates a Steve Jobs*, sobre la tecnología de Xerox
+****
+> Creo que es más como si ambos tuviéramos este vecino rico llamado Xerox y yo irrumpí en su casa para robar el televisor y descubrí que tú [Steve Jobs] ya lo habías robado
+****
+
+==== Steve Jobs (again)
+
+Apple incorpora las pantallas táctiles capacitivas a sus dispositivo móvil iPhone, lo que amplía el interés en nuevas formas de *entrada* y en las interfaces gráficas de usuario basadas en *gestos*.
+
+Es importante distinguir entre las mejores interfaces de usuario para *entrada* y las mejores para *salida*.
+
+
+==== Sam Altman
+
+Sam Altman, director ejecutivo de Open AI, propone el término _Language User Interface_ (LUI) para referirse a las interfaces de usuario basadas en *lenguaje natural*:
+
+- Interacciones conversacionales (chatbots)
+- Sugerencias generadas por _Large Language Models_ (LLM)
+- Interacciones contextualizadas
+
+A pesar de que los LLM son una tecnología clave para la interacción _verbal_ de *entrada* (chatbots), las interfaces de *salida* siguen siendo muchas veces gráficas, visuales o de otro tipo (por ejemplo, hápticas).
+
+---
+
+=== Un poco de teoría
+
+//[icon="question54px.png"]
+NOTE: *Interfaces de usuario*
+****
+Software y hardware que salvan las diferencias entre la acciones humanas y las acciones del ordenador
+****
+
+* Comportamiento *funcional* determinista del ordenador
+* Las UI (_User Interface_) hacen un *mapping* de las capacidades sensoriales, cognitivas y sociales del humano hacia las *funciones* de la máquina
+* Las UI deben ofrecer representaciones "aprendibles" (_learnable_): algunas lo hacen y otras no
+
+NOTE: Learnability ("aprendibilidad")
+****
+Facilidad con que un producto o aplicación de software puede ser comprendido y utilizado por los usuarios
+****
+
+[icon="question54px.png"]
+NOTE: ¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?
+****
+* ¿Un ratón?
+* ¿Una pantalla táctil?
+* ¿Una interfaz de voz?
+* ¿Una interfaz de realidad virtual?
+****
+
+[icon="question54px.png"]
+NOTE: ¿Todas las UI proporcionan un comportamiento funcional determinista?
+
+* Ver el video link:https://vimeo.com/177977174[Emotiv brain—computer interface (BCI) with portable EEG,window=_blank]
+//-
+
+//video::177977174[vimeo, width=640, height=360]
+
+
+//[icon="question54px.png"]
+NOTE: *Disciplinas involucradas*
+****
+* Ciencia de la computación (en España, Informática)
+* Sistemas de información (en España, Informática; fuera, _Business_)
+* Ingeniería del software  (en España, Informática)
+* Inteligencia artificial  (en España, Informática)
+* Ergonomía y diseño de producto (en España, Diseño industrial y desarrollo de producto)
+* Diseño gráfico
+* Psicología cognitiva y Neuropsicología
+* Sociología
+* Lingüística [computacional]
+* _Information Science_ (en España, Biblioteconomía y documentación)
+* Filosofía y Antropología
+****
+
+//[icon="question54px.png"]
+NOTE: *Múltiples teorías*
+****
+* Teoría de la actividad
+* Modelos conceptuales
+* Procesos de diseño
+* Búsqueda de información
+* Semiótica
+* Comunicación
+* Etc.
+****
+
+- La teoría de la actividad se centra en el análisis de las actividades que el usuario realiza con el sistema y en la descripción de las tareas que el usuario realiza con el sistema.
+
+- Los modelos conceptuales se basan en la idea de que el usuario tiene una representación mental del sistema y que esta representación mental se construye a partir de la experiencia del usuario con el sistema. 
+
+- La semiótica se basa en la idea de que el usuario interpreta el sistema como un conjunto de signos. 
+
+//[icon="question54px.png"]
+TIP: *Affordances*  ("asequibilidades") y *feedback* (retroalimentación)
+****
+* *Affordance* = propiedad de las interfaces que indica qué puede hacerse con ellas
+    ** Por ejemplo: la forma de un artefacto
+    ** En semiótica, affordance = el significante
+    ** Compuestos de hardware y software
+* *Feedback* = las interfaces deben responder a las acciones del usuario
+    ** Por ejemplo, el sonido del click
+* Las interfaces deben permitir construir un modelo mental de cuáles son las acciones posibles (el significado)
+****
+
+[icon="question54px.png"]
+NOTE: ¿Qué implica este significante?
+****
+image::stop.png[Stop sign,150]
+****
+
+---
+
+=== Temario detallado
+
+---
+
+*Tema 1*. Interacción + Lenguajes visuales y de bloques
+
+[frame="topbot",align="center",grid="cols",cols="2*<.v"]
+|===
+
+| *Teoría*
+
+    _Estilos de interacción_
+
+    _End-user development_
+
+    _Lenguajes visuales de bloques_
+
+| *Herramientas*
+
+    _Scratch, Snap!, App Inventor, Tinker CAD, Workflows N8N, etc._
+
+|===
+
+*Tema 2*. Interacción multimodal y verbal
+
+[frame="topbot",align="center",grid="cols",cols="2*<.v"]
+|===
+
+| *Teoría*
+
+    _Interacción multi-modal_
+
+    _Interfaces verbales_
+    
+| *Herramientas*
+
+    _DialogFlow, IBM Watson, Amazon Lex, Rasa NLU, N8N, ChatGPT, etc._
+
+|===
+
+*Tema 3*. Entornos inmersivos: realidad virtual, aumentada y mixta
+
+[frame="topbot",align="center",grid="cols",cols="2*<.v"]
+|===
+
+| *Teoría*
+
+    _Conceptos_
+
+    _Dispositivos y demostración_
+
+| *Herramientas*
+
+    _Vuforia, Unity 3D, VEDILS, etc._
+    
+|===
+
+*Tema 4*. Videojuegos y aprendizaje: evaluación y ludificación
+
+[frame="topbot",align="center",grid="cols",cols="2*<.v"]
+|===
+
+| *Teoría*
+
+    _Videojuegos como herramientas de aprendizaje, gamificación y evaluación_
+
+| *Herramientas*
+
+    _Twine, H5P, etc._
+
+|===
+
+*Tema 5*. Usabilidad y experiencia de usuario
+
+[frame="topbot",align="center",grid="cols",cols="2*<.v"]
+|===
+
+| *Teoría*
+
+    _Usabilidad, Experiencia de usuario, Accesiblidad, Arquitectura de la información, Diseño de la interacción_
+
+| *Herramientas*
+
+    _Evaluación de UX_
+
+|===
+
+
+== ESTILOS DE INTERACCIÓN
+
+TIP: Estilos de interacción representativos
+****
+*Manipulación directa*:: Interacción mediante acciones físicas sobre objetos virtuales que simulan propiedades y comportamiento del mundo real.
+*Navegación y selección por menús*:: Uso de listas o paneles jerárquicos para explorar opciones y elegir comandos o funciones.
+*Rellenado de formularios*:: Introducción de datos mediante campos específicos para estructurar la información que el sistema procesa.
+*Lenguajes de comandos*:: Interacción textual donde el usuario escribe órdenes exactas para que el sistema las ejecute.
+*Lenguaje natural (humano)*:: Comunicación verbal mediante texto o voz usando lenguaje cotidiano y entendible sin codificación técnica.
+*Entornos inmersivos*:: Interfaces que sumergen al usuario en un espacio digital tridimensional, permitiendo interacciones realistas dentro del entorno virtual
+****
+
+---
+
+=== Manipulación directa
+
+* Es el paradigma inherente en las link:https://en.wikipedia.org/wiki/WIMP%5F(computing)[interfaces WIMP,window=_blank] (Windows, Icons, Menus and Pointers)
+* Uso intensivo del _drag-and-drop_
+* Navegación fluida
+
+.Manipulación directa para convertir bosquejos hechos a mano en gráficos vectoriales [1'] 
+====
+video::hI4w8J6yauk[youtube, width=640, height=360, start=98, end=158]
+====
+
+==== Características de la manipulación directa
+
+****
+1. Los objetos de interés siempre están representados con una metáfora *visual*
+2. La forma de invocar comandos es interactuar con el objeto a través de *acciones físicas*
+3. Se obtiene una *retroalimentación* inmediata de la acción sobre el objeto, que es *reversible*
+****
+
+==== Ejemplos de manipulación directa
+
+* Sistemas de información geográfica con GPS
+* Videojuegos
+* CAD/CAM
+
+[icon="question54px.png"]
+NOTE: ¿Son las interfaces interactivas tipo WIMP naturales o aprendibles?
+
+TIP: Ver la serie link:https://www.filmaffinity.com/es/film425311.html[The Billion Dollar Code,window=_blank] sobre los orígenes de Google Earth.
+
+==== Futuro de la manipulación directa
+
+[icon="question54px.png"]
+NOTE: ¿Qué futuro espera a la manipulación directa?
+
+* Pantallas táctiles
+* Interfaces 2D y 3D
+* Inteligencia artificial
+
+.Conversión de imágenes bitmap en SVG usando ML [1'47'']
+====
+video::4MfG9CDufPA[youtube, width=640, height=360, start=159, end=272]
+====
+
+
+==== Distancia traslacional
+
+Distancia entre el usuario y la representación de la metáfora
+
+****
+* Débil
+* Media 
+* Fuerte
+* Inmersiva
+****
+
+[icon="question54px.png"]
+NOTE: ¿Qué distancia traslacional suponen estas UI?
+****
+image::game_controllers.png[Mandos de videojuegos, width=400, height=328]
+image::mac_trackball.png[Trackball en viejo macintosh, width=400, height=328]
+image::tabletop.png[Interfaz tabletop, width=400, height=328]
+image::tangible_ui.png[Interfaz tangible, width=400, height=328]
+****
+
+.Distancias traslacionales
+****
+* *Débil* -- e.g. mandos de videojuegos
+* *Media* -- e.g. pantallas táctiles y multi-táctiles
+* *Fuerte* -- e.g. guantes, gestos, tangibles
+* *Inmersiva* -- e.g. realidad virtual, realidad extendida
+****
+
+---
+
+=== Lenguajes de comandos
+
+.Lenguajes de comandos: _shell_
+====
+image::explainshell.png[explainshell.com, link=https://explainshell.com/, width=640, height=360]
+====
+
+.Lenguaje de programación: _SQL_
+====
+image::showthedocs.png[showthedocs.com, link=http://showthedocs.com/, width=640, height=360]
+====
+
+.Lenguajes para programación y configuración
+****
+* link:https://es.wikipedia.org/wiki/Macro[Macros y secuencias de acciones,window=_blank]
+* link:https://en.wikipedia.org/wiki/Scripting_language[Lenguajes de scripting,window=_blank]
+* Lenguajes de configuración: v.g. link:https://developer.hashicorp.com/terraform/language[terraform HCL,window=_blank]
+* Lenguajes de programación: v.g. link:https://github.com/hashicorp/terraform-cdk[terraform CDK,window=_blank]
+* link:https://en.wikipedia.org/wiki/Visual_programming_language[Lenguajes de programación visual,window=_blank]: v.g. link:https://nodered.org[Node-RED,window=_blank]
+* Lenguajes de bloques: v.g. link:https://developers.google.com/blockly?hl=es-419[Blockly,window=_blank]
+****
+
+---
+
+=== Lenguajes de programación visual
+
+TIP: Los primeros lenguajes propuestos por el _End-user development_
+****
+* Lenguajes de bloques: _Block-based languages_
+* Lenguajes de construcción y modelado: _Building Information Modeling_ (BIM)
+* Lenguajes mixtos: v.g. link:https://strype.org/[strype,window=_blank]
+****
+
+==== Lenguajes de bloques
+
+.Lenguajes de bloques
+****
+* link:https://developers.google.com/blockly[Blockly,window=_blank]
+* link:https://scratch.mit.edu/[Scratch,window=_blank]
+* link:https://appinventor.mit.edu/[App Inventor,window=_blank]
+* link:https://snap.berkeley.edu/[Snap!,window=_blank]
+* link:https://makecode.microbit.org/[MakeCode,window=_blank]
+* link:https://www.tynker.com/[Tynker,window=_blank]
+****
+
+==== Lenguajes de construcción y modelado
+
+.Lenguajes de construcción y modelado
+****
+* link:https://sysml.org/[SysML,window=_blank]
+* link:https://es.mathworks.com/products/simulink.html[Simulink,window=_blank]
+* link:https://www.bpmn.org/[BPMN,window=_blank]
+* link:https://en.wikipedia.org/wiki/Autodesk_Revit[Autodesk Revit,window=_blank]
+****
+
+
+---
+
+=== Lenguaje humano
+
+
+TIP: A tratar en el tema _Interacción multimodal y verbal_
+****
+* Lenguaje natural
+* Interfaces de voz
+****
+
+---
+
+=== Entornos inmersivos
+
+TIP: A tratar en el tema _Entornos inmersivos_
+****
+* Interacción gestual
+* Realidad virtual
+* Realidad aumentada
+* Realidad mixta
+* Realidad extendida
+****
+
+//.Telepresencia con gestos del Avatar
+//video::hkSfHCtpnHU[youtube, width=640, height=360]
+
+== END-USER DEVELOPMENT
+
+Los usuarios más avanzados suelen necesitar poder **personalizar** o ampliar las aplicaciones que manejan. Por ejemplo: link:https://taravancil.com/blog/organizing-my-kitchen-with-airtable/[Organizar recetas de cocina,window=_blank] con link:https://www.airtable.com/[Airtable,window=_blank].
+
+- Algunos programas y apps pueden tener un cierto grado de libertad para configurar su comportamiento. Otros son cajas herméticamente cerradas a las que un usuario avanzado puede querer modificar de su comportamiento.
+
+- Si no hay un botón que haga exactamente lo que el usuario quiera, su única alternativa es pedírselo al desarrollador del programa (al que le puede resultar conveniente hacerlo o no, y si lo hace normalmente querrá cobrar por ello).
+
+Esta es una reclamación tradicional de los defensores del **software libre** y https://www.gnu.org/philosophy/free-sw.html.en[FLOSS] (_Free and Libre Open Source_). En la práctica, reconstruir una aplicación y modificarla a partir del código fuente requiere un esfuerzo y exige habilidades avanzadas de desarrollo de software.
+
+- Algunas herramientas permiten **_plugins_** que se ejecutan dentro de la aplicación principal para hacer las ampliaciones o modificaciones.
+- Otras herramientas ofrecen una _Application Programming Interface_ (**API**) para que los desarrolladores puedan hacer esas ampliaciones desde fuera y dejen a la aplicación principal hacer el resto.
+
+El software debería ser ampliable y *extensible* de una forma más fácil y rápida, para que cualquier usuario final o _end-user_ pueda automatizar, personalizar o construir su propia herramienta a partir de una dada. Para ello necesitan un lenguaje de _End-User Development_ (**EUD**).
+
+* El objetivo de la HCI/HMI pasa de hacer sistemas *fáciles de usar* a hacer sistemas *fáciles para desarrollar*
+* Desafío ⇒ construir sistemas que permitan a usuarios sin conocimientos de programación *combinar* de forma creativa _artefactos_ hechos de software
+* Combinación de _artefactos_ ⇒ crear, modificar y ampliar artefactos software
+* Los _end-users_ no son desarrolladores profesionales
+
+.*Definición de EUD* https://link.springer.com/chapter/10.1007/1-4020-5386-X_1[(Lieberman et al. 2006), window=_blank]
+[quote, H. Lieberman et al., End-User Development: An Emerging Paradigm]
+____
+A set of methods, techniques, and tools that allow users of software systems, who are acting as non-professional software developers, at some point to create, modify, or extend a software artifact
+____
+
+.Algunos ejemplos de EUD
+****
+- UNIX Pipes: https://blog.jessfraz.com/post/for-the-love-of-pipes/[For the love of pipes]
+- Hojas de cálculo:
+    * https://www.miramontes.com/writing/spreadsheet-eup/[Spreadsheets: A basis for end-user programming]
+    * https://ieeexplore.ieee.org/document/7476773[Spreadsheets are code]. 
+- La propia World Wide Web permite la creación de contenidos y aplicaciones personalizadas con HTML, CSS, Javascript, PHP, etc.
+- Programación visual en ingeniería: https://www.ni.com/es-es/shop/labview.html[LabView]
+****
+
+---
+
+=== End-User Programming
+
+[icon="question54px.png"]
+NOTE: ¿Por qué _end-user_?
+****
+Hace falta un término que distinga al desarrollo/programación por parte del usuario del desarrollo/programación hecho por profesionales de ingeniería de software
+****
+
+- Los ingenieros de software profesionales construyen aplicaciones de propósito general diseñadas para ser empleadas por muchas personas
+
+- Los programadores end-user son usuarios avanzados, no necesariamente programadores profesionales, que modifican o crean herramientas _ad hoc_ para su uso personal o para compartir con unos pocos colegas, todo lo más.
+
+
+[icon="book-b.png"]
+NOTE: Lectura recomendada
+****
+- Ink & Switch (2019). https://www.inkandswitch.com/end-user-programming.html[End-user programming, window=_blank]
+****
+
+[icon="question54px.png"]
+NOTE: ¿Por qué algunos ingenieros prefieren Python y otros Excel?
+****
+- https://www.microsoft.com/en-us/research/publication/calculation-view-multiple-representation-editing-in-spreadsheets/[Calculation View]: Representaciones múltiples de la edición en hojas de cálculo
+****
+
+NOTE: Python en Excel
+****
+
+Microsoft ha incorporado https://support.microsoft.com/es-es/office/introducci%C3%B3n-a-python-en-excel-a33fbcbe-065b-41d3-82cf-23d05397f53d[Python en Excel] en una versión preliminar para el programa _insider_ del canal beta.
+****
+
+---
+
+=== Computational Thinking
+
+Los entornos y lenguajes de EUD ofrecen la capacidad de *crear* con una herramienta, más allá de la capacidad de *usar* una herramienta.
+
+.*On Computing...*  https://mitpress.mit.edu/books/computing[(Rosembloom 2013), window=_blank]
+[quote, Paul Rosenbloom, On Computing: The Fourth Great Scientific Domain]
+____
+[...] incorporates both *understanding* (as is the focus in most traditional science) and *shaping* (as is the focus in engineering and other professions)
+____
+
+Pero para poder crear y desarrollar software, hacen falta unos mínimos conocimientos y habilidades sobre los conceptos básicos sobre lo que un ordenador puede hacer, cómo lo hace y cómo instruirlo para que lo haga. Esto es el terreno del *pensamiento computacional* o _computational thinking_ subyacente al _Computing_ (en español, traducido por "Informática").
+
+.*Computational thinking* https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf[(Wing 2006), window=_blank]
+//https://mitpress.mit.edu/books/computational-thinking[(Denning & Tedre, 2018)]
+[quote, J. Wing, Computational Thinking -- Communications of the ACM]
+____
+Computational Thinking involves solving problems, designing systems, and understanding human behavior, by drawing on the concepts fundamental to computer science.
+
+Computational thinking is a fundamental skill for everyone, not just computer scientist [...]; involves solving problems, designing systems, and understanding human behaviour, by drawing on the concepts fundamental to CS [...];  is thinking recursively. It is parallel processing [...]; is using abstraction and decomposition when [...] designing a large complex system [...]; is thinking in terms of prevention, protection, and recovery from worst-case scenarios [...]; is using heuristic reasoning to discover a solution.
+____
+
+[icon="question54px.png"]
+NOTE: ¿Recuerdan a Vannevar Bush?
+
+image::AsWeMayThink.png[As We May Think,366,387]
+
+.Visionario del _computational thinking_
+****
+[quote, Vannevar Bush, As We May Think, 1945]
+____
+Wholly new forms of *encyclopedias* will appear, ready made with a mesh of associative trails running through them, ready to be dropped into the memex and there *amplified*. The *lawyer* has at his touch the associated opinions and decisions of his whole experience, and of the experience of friends and authorities. The *patent attorney* has on call the millions of issued patents, with familiar trails to every point of his client's interest. The *physician*, puzzled by a patient's reactions, strikes the trail established in studying an earlier similar case, and runs rapidly through analogous case histories, with side references to the classics for the pertinent anatomy and histology. The *chemist*, struggling with the synthesis of an organic compound, has all the chemical literature before him in his laboratory, with trails following the analogies of compounds, and side trails to their physical and chemical behavior.
+____
+****
+
+[icon="book-b.png"]
+NOTE: Lectura recomendada
+****
+- Evan W. Patton, M. Tissenbaum & F. Harunani (2018). MIT App Inventor: Objectives, Design, and Development, en _Computational Thinking Education_, SpringerOpen, https://doi.org/10.1007/978-981-13-6528-7[DOI:10.1007/978-981-13-6528-7, window=_blank]
+(También disponible en link:./lecturas/MITAppInventor.pdf[MIT App Inventor.pdf])
+****
+
+---
+
+=== _Low code_
+
+El low code es una evolución del EUD, que permite a los usuarios crear aplicaciones sin necesidad de escribir mucho código.
+
+Algunos ejemplos de lenguajes de low code son: 
+
+* Microsoft PowerApps
+* Google AppSheet (sucesor de App Maker)
+* Apple SwiftUI / Swift Playgrounds
+* Oracle Visual Builder y Oracle APEX
+* Salesforce Lightning
+* Mendix
+* GeneXus
+* OutSystems
+
+---
+
+=== _Embodiment_ o Encarnación
+
+Una de las partes más difíciles de la construcción de software es que requiere que el programador mantenga varias abstracciones en su mente. El programador debe comprender el dominio del problema, modelar las estructuras de datos y el flujo del programa, y finalmente trasladar todo a una representación simbólica (*código* en un lenguaje).
+
+La capacidad de razonamiento abstracto y concentración exigida a un ingeniero de software para escribir software no es viable para alguien que solo quiere resolver su problema particular mediante el ordenador y que suele ser experto en otros dominios ajenos al de la programación.
+
+Hacen falta formas que requieran menos razonamiento abstracto y menos capacidad mental para modelar los programas y los datos, dejando más capacidad para pensar en el dominio de la aplicación.
+
+Una forma de hacer esto es el _embodiment_ o *encarnación*, es decir, ofrecer al usuario final representaciones concretas para los elementos de un programa que funcione.
+
+Las encarnaciones son normalmente visuales, pero también de otros tipos (auditivas, hápticas, etc.)
+
+.Ejemplos de Encarnaciones
+****
+- https://developers.google.com/blockly[Blockly]: Encarnación gráfica (como bloques) en un lenguaje visual similar al usado por Scratch, App Inventor, etc.
+- https://harc.github.io/seymour-live2017/[Seymour]: Encarnación (como código) de la salida de un programa
+- https://unity.com/es/products/unity-visual-scripting[Bolt]: Encarnación (gráfica) en un lenguaje visual de scripting para juegos en Unity
+****
+
+[icon="question54px.png"]
+NOTE: ¿Excel usa alguna encarnación?
+****
+- https://www.microsoft.com/en-us/research/publication/calculation-view-multiple-representation-editing-in-spreadsheets/[Calculation View]: *Encarnaciones* múltiples de la edición en hojas de cálculo
+****
+
+---
+
+=== Programación literaria
+
+- _Literate Programming_: Invento de Donald Knuth en 1983
+- El código fuente se parece mucho más a un *documento* que a un listado de código
+- Bloques de código embebido en un documento
+- Genera un documento legible junto a código ejecutable
+
+.Ejemplos de programación literaria
+****
+- https://jupyter.org/[Jupyter]: Entorno interactivo para crear _notebooks_, código y datos en una diversidad de lenguajes (Python, SQL, R, Matlab, etc.)
+****
+
+
+[icon="book-b.png"]
+NOTE: Lectura recomendada
+****
+- Justin Worthe: https://www.offerzen.com/blog/literate-programming-empower-your-writing-with-emacs-org-mode[Literate programming, window=_blank]
+****
+
+=== Herramientas
+
+---
+
+==== Herramientas GUI
+
+- https://helpx.adobe.com/la/support/xd.html[Adobe XD]: Diseño y prototipado
+- https://balsamiq.com/[Balsamiq]: Prototipado rápido
+- https://www.figma.com/[Figma]: Diseño y prototipado; freemium
+- https://iconos8.es/lunacy[Lunacy]: Diseño y prototipado; free
+- https://penpot.app/[Penpot]: Diseño y prototipado; ¡open source!
+
+---
+
+==== Lenguajes block-based
+
+* https://developers.google.com/blockly[Blockly, window=_blank]
+    ** https://scratch.mit.edu/[Scratch, window=_blank]
+    ** https://appinventor.mit.edu/[AppInventor, window=_blank]
+    ** https://snap.berkeley.edu/[Snap!, window=_blank]
+    ** https://www.kodular.io/[Kodular, window=_blank]
+    ** http://beetleblocks.com/[Beetle blocks, window=_blank]
+* Microsoft
+    ** https://www.microsoft.com/es-es/makecode/[MakeCode, window=_blank] 
+    ** https://arcade.makecode.com/[MakeCode Arcade, window=_blank]
+* http://pencilcode.net/[PencilCode, window=_blank]
+* http://www.alice.org/[Alice, window=_blank]
+
+---
+
+==== Lenguajes data-flow
+
+* https://nodered.org/[Node-RED, window=_blank]
+* https://education.lego.com/es-es/downloads/mindstorms-ev3/software/[Lego Mindstorms V3, window=_blank]
+
+---
+
+==== Lenguajes mixtos
+
+* link:https://strype.org/[Strype,window=_blank]
+
+
+== UX E INTELIGENCIA ARTIFICIAL
+
+=== Evolución del EUD
+
+El EUD ha evolucionado en tres grandes generaciones:
+
+- En la primera, el usuario debía escribir **todo el código** directamente, lo que exigía conocimientos técnicos avanzados y limitaba la creación de soluciones a perfiles especializados.
+- La segunda generación trajo plataformas de **low code** y **no code**, donde los usuarios podían construir aplicaciones y automatizaciones mediante interfaces visuales, arrastrando y configurando bloques, reduciendo la dependencia de programadores expertos.
+- Una tercera generación, impulsada por la IA Generativa y el **prompting**, permite que los usuarios describan lo que quieren en lenguaje natural y el sistema genera, adapta o ejecuta el flujo automáticamente a través de **agentes inteligentes** (v.g. herramientas tipo https://n8n.io/[n8n, window=_blank]). Esto democratiza aún más la creación.
+
+=== La IA y el futuro de las UI
+
+.The Weird Death of User Interfaces [14'33"]
+****
+video::KG4ONHqF1qg[youtube, width=640, height=480]
+****
+
+Según Enrico Tartarotti, la muerte de las UI que se han utilizado durante los últimos 40 años se considera un hecho. A pesar de los esfuerzos recientes por perfeccionar y embellecer estas interfaces, las mismas compañías están intentando eliminarlas por completo, reemplazándolas con simples "prompts de texto en blanco y negro" que recuerdan a las líneas de comando de los años 80.
+
+Esta transición se debe a que, si bien las UIs tradicionales son muy buenas para la **salida** (mostrar información de forma visual), son deficientes en la *entrada* (la necesidad de navegar por menús y hacer clics).
+
+Por el contrario, los nuevos chatbots han resuelto el problema de la entrada al "entender" el lenguaje natural, aunque su salida sigue siendo el texto plano. En el futuro post-UI, las interfaces no se construirán, sino que se generarán sobre la marcha a través de agentes que responden al lenguaje, lo que puede llevar a que las UIs desaparezcan en gran medida.
+
+=== La IA como sistema operativo
+
+.OpenAI just made your entire tech stack obsolete... [15"]
+****
+video::91aH8jsG4cc[youtube, width=640, height=480, start=20, end=45]
+****
+
+El intento de OpenAI de usar ChatGPT como un sistema operativo (SO) o interfaz universal para todas las aplicaciones se resume en su ambición de convertir a ChatGPT en una plataforma de aplicaciones, buscando reemplazar o evitar la necesidad de las GUI tradicionales. Este esfuerzo ha pasado por varias fases y se basa en la idea de que la forma de interactuar con el software está cambiando fundamentalmente.
+
+La analogía que se hace es que los LLM tienen propiedades que los asemejan a los sistemas operativos (SO).
+
+- *ChatGPT como plataforma*: OpenAI está apostando fuertemente por convertir a ChatGPT en una plataforma de aplicaciones. El objetivo es que ChatGPT actúe como un SO que te mantenga completamente _encerrado_ en su ecosistema.
+- *La analogía del SO*: Los LLMs se ven como una especie de nuevo sistema operativo. El LLM en sí es como la CPU y las ventanas de contexto son como la memoria. El LLM orquesta computación y memoria para resolver problemas.
+
+==== El experimento de la interfaz universal
+
+.OpenAI just made your entire tech stack obsolete... [30"]
+****
+video::91aH8jsG4cc[youtube, width=640, height=480, start=84, end=125]
+****
+
+OpenAI ha intentado varias aproximaciones para lograr que ChatGPT sea la interfaz de interacción principal:
+
+- Inicialmente, lanzaron GPT Plugins
+- Luego, intentaron una ligera variación llamada GPTs
+- Actualmente, están intentando implementar _Apps in ChatGPT_.
+
+==== El paradigma de la entrada y salida
+
+La clave de este intento radica en la capacidad de los chatbots para manejar la entrada del usuario de forma humana, aunque su salida sea actualmente deficiente:
+
+- *Entrada*: con un chatbot puedes "divagar" en modo de voz o escribir un prompt mal formado, y el LLM es muy bueno para entender lo que quieres.
+- *Salida*: sin embargo, fallan en la salida; son malos mostrando la información o haciéndote sentir en control, volviendo a interfaces similares a las líneas de comando de los años 80.
+
+==== Agentes autónomos
+
+.OpenAI just made your entire tech stack obsolete... [1'30"]
+****
+video::91aH8jsG4cc[youtube, width=640, height=480, start=165]
+****
+
+_AgentKit_ de OpenAI es un conjunto unificado de herramientas diseñado para que los desarrolladores puedan construir, desplegar y optimizar agentes de IA (agents).
+
+Es la alternativa de OpenAI a soluciones open source como https://n8n.io/[n8n, window=_blank].
+
+=== Autonomía parcial
+
+.Aplicaciones parciamente autónomas [21']
+****
+video::LCEmiRjPEtQ[youtube, width=640, height=480, start=1108]
+****
+
+
+Andrej Karpathy considera las **aplicaciones parcialmente autónomas** como una de las mayores oportunidades en la era del software impulsado por LLM. Estas aplicaciones representan una forma de interactuar con los modelos de lenguaje que va más allá de simplemente usar el LLM directamente como una _terminal_ o un _sistema operativo_ (como copiar y pegar código en un chat).
+
+Estas aplicaciones están diseñadas para la cooperación entre humanos e IA (_Human in the loop_). En esta cooperación, la IA se encarga de la generación del trabajo, mientras que los humanos realizan la verificación o auditoría. El objetivo principal es hacer que este ciclo de generación y verificación sea lo más rápido posible.
+
+==== Aplicaciones parcialmente autónomas
+
+Las aplicaciones parcialmente autónomas, como https://cursor.com/[Cursor,window=_blank] (para programación) y https://www.perplexity.ai/[Perplexity,window=_blank] (para investigación), comparten varias propiedades fundamentales:
+
+1. **Gestión del contexto**: Los LLM dentro de estas aplicaciones manejan una enorme cantidad de la gestión del contexto por el usuario.
+2. **Orquestación de LLMs**: Orquestan múltiples llamadas a diferentes modelos LLM, incluyendo modelos de embeddings, modelos de chat y modelos específicos que aplican cambios (como diffs de código).
+3. **GUI Específica**: Poseen una GUI especializada para la aplicación.
+    - La GUI es vital para la auditoría, ya que utiliza la capacidad de _visión artificial_ 😉 del cerebro humano.
+    - Leer texto es un esfuerzo, pero mirar representaciones visuales es rápido y fácil. Por ejemplo, es más fácil ver un _diff_ de código en rojo y verde que leerlo en texto, y es más rápido aceptar o rechazar un cambio con un comando de teclado que escribirlo.
+4. **Control deslizante de autonomía** (_autonomy slider_): El usuario debe tener control sobre el nivel de autonomía que desea otorgar a la herramienta.
+    - Esta autonomía se puede ajustar según la complejidad de la tarea.
+    - El rango puede ir desde una baja autonomía (como la finalización con un toque o modificar solo un fragmento de código) hasta la autonomía total del agente (como permitir que el agente modifique todo un repositorio).
+
+==== Atar en corto a la IA
+
+Dado que los LLMs son sistemas falibles y propensos a alucinaciones y déficits cognitivos, es crucial "atar en corto" a la IA.
+
+- La IA puede ser sobre-reactiva y generar resultados excesivamente grandes (como un diff de 10,000 líneas de código) que se convierten en un cuello de botella para la verificación humana.
+- Para que el bucle de generación-verificación sea rápido, es mejor trabajar en **trozos pequeños e incrementales**. Esto se logra siendo más concreto en las indicaciones (prompts).
+
+Al igual que sucedió con el piloto automático en la conducción autónoma (un producto de autonomía parcial), la dirección correcta es construir productos de autonomía parcial en lugar de grandes demostraciones llamativas de agentes totalmente autónomos. Durante la próxima década, la oportunidad reside en desarrollar software que mueva gradualmente ese control deslizante de autonomía hacia una mayor automatización.
+
+
+//- 
+

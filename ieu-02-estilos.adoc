@@ -1,0 +1,194 @@
+= Interacción y Experiencia de Usuario
+:showtitle:
+:lang: es
+:icons: font
+:sectnums!:
+:sectnumlevels: 2
+:toc: left
+:toc-title: Contenidos
+:toclevels: 3
+//:toc-placement: preamble
+:imagesdir: ./images
+:example-caption: Ejemplo
+:figure-caption: Figura
+:caution-caption: Atención
+:important-caption: Importante
+:note-caption: Nota
+:tip-caption: Sugerencia
+:warning-caption: Aviso
+:table-caption: Tabla
+:appendix-caption: Apéndice
+:xrefstyle: short
+:linkattrs:
+
+
+== Estilos de interacción
+
+TIP: Estilos de interacción
+****
+* Manipulación directa
+* Navegación y selección de menús
+* Rellenado de formularios
+* Lenguajes de comandos
+* Lenguaje humano (lenguaje natural)
+* Entornos inmersivos
+****
+
+---
+
+=== Manipulación directa
+
+* Es el paradigma inherente en las link:https://en.wikipedia.org/wiki/WIMP%5F(computing)[interfaces WIMP,window=_blank] (Windows, Icons, Menus and Pointers)
+* Uso intensivo del _drag-and-drop_
+* Navegación fluida
+
+.Manipulación directa para convertir bosquejos hechos a mano en gráficos vectoriales [1'] 
+====
+video::hI4w8J6yauk[youtube, width=640, height=360, start=98, end=158]
+====
+
+==== Características de la manipulación directa
+
+****
+1. Los objetos de interés siempre están representados con una metáfora *visual*
+2. La forma de invocar comandos es interactuar con el objeto a través de *acciones físicas*
+3. Se obtiene una *retroalimentación* inmediata de la acción sobre el objeto, que es *reversible*
+****
+
+==== Ejemplos de manipulación directa
+
+* Sistemas de información geográfica con GPS
+* Videojuegos
+* CAD/CAM
+
+[icon="question54px.png"]
+NOTE: ¿Son las interfaces interactivas tipo WIMP naturales o aprendibles?
+
+TIP: Ver la serie link:https://www.filmaffinity.com/es/film425311.html[The Billion Dollar Code,window=_blank] sobre los orígenes de Google Earth.
+
+==== Futuro de la manipulación directa
+
+[icon="question54px.png"]
+NOTE: ¿Qué futuro espera a la manipulación directa?
+
+* Pantallas táctiles
+* Interfaces 2D y 3D
+* Inteligencia artificial
+
+.Conversión de imágenes bitmap en SVG usando ML [1'47'']
+====
+video::4MfG9CDufPA[youtube, width=640, height=360, start=159, end=272]
+====
+
+
+==== Distancia traslacional
+
+Distancia entre el usuario y la representación de la metáfora
+
+****
+* Débil
+* Media 
+* Fuerte
+* Inmersiva
+****
+
+[icon="question54px.png"]
+NOTE: ¿Qué distancia traslacional suponen estas UI?
+****
+image::game_controllers.png[Mandos de videojuegos, width=400, height=328]
+image::mac_trackball.png[Trackball en viejo macintosh, width=400, height=328]
+image::tabletop.png[Interfaz tabletop, width=400, height=328]
+image::tangible_ui.png[Interfaz tangible, width=400, height=328]
+****
+
+.Distancias traslacionales
+****
+* *Débil* -- e.g. mandos de videojuegos
+* *Media* -- e.g. pantallas táctiles y multi-táctiles
+* *Fuerte* -- e.g. guantes, gestos, tangibles
+* *Inmersiva* -- e.g. realidad virtual, realidad extendida
+****
+
+---
+
+=== Lenguajes de comandos
+
+.Lenguajes de comandos: _shell_
+====
+image::explainshell.png[explainshell.com, link=https://explainshell.com/, width=640, height=360]
+====
+
+.Lenguaje de programación: _SQL_
+====
+image::showthedocs.png[showthedocs.com, link=http://showthedocs.com/, width=640, height=360]
+====
+
+.Lenguajes para programación y configuración
+****
+* link:https://es.wikipedia.org/wiki/Macro[Macros y secuencias de acciones,window=_blank]
+* link:https://en.wikipedia.org/wiki/Scripting_language[Lenguajes de scripting,window=_blank]
+* Lenguajes de configuración: v.g. link:https://developer.hashicorp.com/terraform/language[terraform HCL,window=_blank]
+* Lenguajes de programación: v.g. link:https://github.com/hashicorp/terraform-cdk[terraform CDK,window=_blank]
+* link:https://en.wikipedia.org/wiki/Visual_programming_language[Lenguajes de programación visual,window=_blank]: v.g. link:https://nodered.org[Node-RED,window=_blank]
+* Lenguajes de bloques: v.g. link:https://developers.google.com/blockly?hl=es-419[Blockly,window=_blank]
+****
+
+---
+
+=== Lenguajes de programación visual
+
+TIP: Los primeros lenguajes propuestos por el _End-user development_
+****
+* Lenguajes de bloques: _Block-based languages_
+* Lenguajes de construcción y modelado: _Building Information Modeling_ (BIM)
+* Lenguajes mixtos: v.g. link:https://strype.org/[strype,window=_blank]
+****
+
+==== Lenguajes de bloques
+
+.Lenguajes de bloques
+****
+* link:https://developers.google.com/blockly[Blockly,window=_blank]
+* link:https://scratch.mit.edu/[Scratch,window=_blank]
+* link:https://appinventor.mit.edu/[App Inventor,window=_blank]
+* link:https://snap.berkeley.edu/[Snap!,window=_blank]
+* link:https://makecode.microbit.org/[MakeCode,window=_blank]
+* link:https://www.tynker.com/[Tynker,window=_blank]
+****
+
+==== Lenguajes de construcción y modelado
+
+.Lenguajes de construcción y modelado
+****
+* link:https://sysml.org/[SysML,window=_blank]
+* link:https://es.mathworks.com/products/simulink.html[Simulink,window=_blank]
+* link:https://www.bpmn.org/[BPMN,window=_blank]
+* link:https://en.wikipedia.org/wiki/Autodesk_Revit[Autodesk Revit,window=_blank]
+****
+
+---
+
+=== Lenguaje humano
+
+
+TIP: A tratar en el tema _Interacción multimodal y verbal_
+****
+* Lenguaje natural
+* Interfaces de voz
+****
+
+---
+
+=== Entornos inmersivos
+
+TIP: A tratar en el tema _Entornos inmersivos_
+****
+* Interacción gestual
+* Realidad virtual
+* Realidad aumentada
+* Realidad mixta
+* Realidad extendida
+****
+
+//.Telepresencia con gestos del Avatar
+//video::hkSfHCtpnHU[youtube, width=640, height=360]
