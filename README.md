@@ -49,3 +49,5 @@ Las referencias de cada slide se eligen por su contenido, sin limitar el nivel d
 ## HTML generado bajo control de versiones
 
 Se versionan los HTML de `dist/` junto con `slides.css`, las imágenes y los recursos locales de reveal.js necesarios para abrirlos. Los PDF permanecen excluidos y se regeneran con pnpm. Después de cambiar el contenido o el diseño, ejecuta `pnpm build` y revisa también los cambios generados en `dist/` antes de incorporarlos a Git.
+
+La pregunta sobre comportamiento determinista incluye debajo, mediante navegación vertical de reveal.js (↓), una ficha del vídeo Emotiv enlazado en los apuntes. Se reutiliza el estilo de recomendaciones. La imagen de EEG es una ilustración didáctica local, no una captura del vídeo.

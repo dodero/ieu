@@ -207,6 +207,19 @@ function graphic(kind,items,title){
  if(kind==='hub') return `<div class="hub"><strong>${esc(items[0])}</strong><div>${items.slice(1).map(s=>`<span class="hub-label">${esc(s)}</span>`).join('')}</div></div>`;
  return `<div class="diagram ${kind}">${items.map((s,i)=>{const [a,b]=s.split('|');return `<div class="node" data-id="node-${i}"><span class="number">${String(i+1).padStart(2,'0')}</span>${thumbnail(title,a,i)}<strong>${esc(a)}</strong>${b?`<span>${esc(b)}</span>`:''}${explanations[a]&&kind!=='weights'&&kind!=='timeline'?`<p class="explanation">${esc(explanations[a])}</p>`:''}</div>${['flow','loop','timeline'].includes(kind)&&i<items.length-1?'<span class="arrow">→</span>':''}`;}).join('')}</div>`;
 }
+function renderInteractionTheories(notes,headings,link){
+ const anchor='_teorías_de_la_interacción';
+ if(!headings[anchor]) throw Error('Missing interaction theories heading');
+ const theories=[
+  ['Teoría de la actividad','Actividades y tareas del usuario','Usuario'],
+  ['Modelos conceptuales','Representación mental del sistema','Modelo'],
+  ['Procesos de diseño','Decisiones y revisión del diseño','Configurar'],
+  ['Búsqueda de información','Encontrar y relacionar información','Consultar datos'],
+  ['Semiótica','Interpretación de signos','Elementos'],
+  ['Comunicación','Intercambio de mensajes y significado','Conversar']
+ ];
+ return `<section id="interaction-theories" class="theory-slide" aria-label="Teorías de la interacción"><p class="eyebrow">1.3 Un poco de teoría</p><h2>${link('Teorías de la interacción',anchor)}</h2><div class="theory-grid">${theories.map(([title,text,symbol])=>`<article class="theory-card">${icon(symbol)}<strong>${esc(title)}</strong><p>${esc(text)}</p></article>`).join('')}</div><footer class="notes-references"><ul><li>${link(esc(headings[anchor]),anchor)}</li></ul></footer><aside class="notes">${notes.forSection(anchor)}</aside></section>`;
+}
 export function renderDeck(index, sourceSection, headings){
  const [title,slides]=decks[index];
  const notes=distributeNotes(sourceSection,index,slides.length);
@@ -270,7 +283,20 @@ export function renderDeck(index, sourceSection, headings){
      const context=q.source==='¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?'
        ? `<ul class="question-icon-options">${[['Ratón','Ratón'],['Pantalla táctil','Pantalla táctil'],['Voz','Interfaz de voz'],['Realidad virtual','Dispositivo de VR']].map(([symbol,label])=>`<li>${icon(symbol)}<span>${esc(label)}</span></li>`).join('')}</ul>`
        : q.context;
-     return `<section id="${q.id}" class="source-question" data-answer="slide-${index}-${q.answer}" aria-label="${esc(q.source)}"><p class="eyebrow">${esc(num+' '+name)} · Pregunta</p><div class="question-content"><h2>${q.text}</h2><div class="question-context">${context}</div></div><footer class="notes-references"><ul><li>${link(esc(headings[q.sectionId]),q.sectionId)}</li></ul></footer><aside class="notes">${q.notes}<p>El material para responder se desarrolla en «${esc(slides[q.answer][0])}».</p>${notes.slides[q.answer]}</aside></section>`;
+     const questionSlide=`<section id="${q.id}" class="source-question" data-answer="slide-${index}-${q.answer}" aria-label="${esc(q.source)}"><p class="eyebrow">${esc(num+' '+name)} · Pregunta</p><div class="question-content"><h2>${q.text}</h2><div class="question-context">${context}</div></div><footer class="notes-references"><ul><li>${link(esc(headings[q.sectionId]),q.sectionId)}</li></ul></footer><aside class="notes">${q.notes}<p>El material para responder se desarrolla en «${esc(slides[q.answer][0])}».</p>${notes.slides[q.answer]}</aside></section>`;
+     if(!q.video){
+       const theories=index===0 && q.source==='¿Qué implica este significante?'
+         ? renderInteractionTheories(notes,headings,link) : '';
+       return theories+questionSlide;
+     }
+     const followUp=renderVideoRecommendation({
+       id:`${q.id}-video`,afterId:q.id,sectionId:q.sectionId,
+       title:q.video.title,
+       lead:'Observa la demostración para debatir cómo se relacionan las señales EEG, su interpretación y la respuesta de la interfaz.',
+       videos:[q.video],notes:`${q.notes}<p><a href="${esc(q.video.url)}" target="_blank" rel="noopener">${esc(q.video.title)}</a></p>${notes.forSection(q.sectionId)}`
+     },index,q.id,headings);
+     return `<section class="image-stack question-stack">${questionSlide}${followUp}</section>`;
+
    }).join('');
    const recommendedVideos=videoRecommendations.map((item,n)=>item.after===i?renderVideoRecommendation(item,index,n,headings):'').join('');
    return divider+questionSlides+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main)+recommendedVideos;

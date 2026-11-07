@@ -2,7 +2,7 @@
 const placement = [
  {
   '¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?': {before:7,context:true},
-  '¿Todas las UI proporcionan un comportamiento funcional determinista?': {before:8,answer:5},
+  '¿Todas las UI proporcionan un comportamiento funcional determinista?': {before:8,answer:5,video:true},
   '¿Qué implica este significante?': {before:6,context:true}
  },
  {
@@ -29,7 +29,16 @@ export function collectQuestions(section,index){
     const source=block.getSource(),route=placement[index][source];
     if(!route) throw Error(`Question needs a response slide: ${source}`);
     const next=blocks[position+1];
-    questions.push({id:`question-${index}-${questions.length}`,sectionId,source,text:block.getContent(),before:route.before,answer:route.answer??route.before,
+    let video;
+    if(route.video){
+     const html=next?.convert()||'';
+     const match=html.match(/<a\b[^>]*href="(https:\/\/vimeo\.com\/([0-9]+))"[^>]*>([\s\S]*?)<\/a>/);
+     if(!match) throw Error(`Missing source video after question: ${source}`);
+     const title=match[3].replace(/<[^>]*>/g,'').replaceAll('&amp;','&');
+     video={id:`vimeo-${match[2]}`,title,url:match[1],poster:'images/videos/emotiv-bci.svg',posterAlt:'Ilustración didáctica de una interfaz cerebro-ordenador con EEG portátil',links:[{url:match[1],label:title}]};
+    }
+
+    questions.push({id:`question-${index}-${questions.length}`,sectionId,source,text:block.getContent(),before:route.before,answer:route.answer??route.before,video,
      context:route.context && next?next.convert():'',notes:block.convert()});
    }
    walk(block,sectionId);

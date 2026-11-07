@@ -113,5 +113,11 @@
     "file": "f32W5BEzWN0.jpg",
     "image": "https://i.ytimg.com/vi/f32W5BEzWN0/mqdefault.jpg",
     "source": "https://www.youtube.com/watch?v=f32W5BEzWN0"
+  },
+  {
+    "file": "emotiv-bci.svg",
+    "source": "https://vimeo.com/177977174",
+    "type": "original_educational_illustration",
+    "note": "Ilustración original, no miniatura ni captura del vídeo; Vimeo no devolvió metadatos públicos."
   }
 ]
