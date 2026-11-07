@@ -1,3 +1,4 @@
+import { collectVideoRecommendations, renderVideoRecommendation } from './video-recommendations.mjs';
 import { collectQuestions } from './questions.mjs';
 import { distributeNotes } from './speaker-notes.mjs';
 const decks = [
@@ -210,6 +211,16 @@ export function renderDeck(index, sourceSection, headings){
  const [title,slides]=decks[index];
  const notes=distributeNotes(sourceSection,index,slides.length);
  const questions=collectQuestions(sourceSection,index);
+ const videoRecommendations=collectVideoRecommendations(sourceSection,notes);
+ // Finish Memex and Sketchpad before introducing Xerox and Macintosh recommendations.
+ if(index===0){
+  const afterSketchpad=slides.findIndex(([title])=>title==='Sketchpad: actuar sobre lo que se ve');
+  if(afterSketchpad<0) throw Error('Missing Sketchpad slide for historical recommendations');
+  for(const recommendation of videoRecommendations){
+   if(['_alan_kay','_steve_jobs'].includes(recommendation.sectionId)) recommendation.after=afterSketchpad;
+  }
+ }
+
  const link=(text,id)=>`<a href="apuntes.html#${encodeURIComponent(id)}" target="_blank" rel="noopener">${text}</a>`;
  let previous=-1;
  const content=slides.map(([h,k,v],i)=>{
@@ -261,7 +272,8 @@ export function renderDeck(index, sourceSection, headings){
        : q.context;
      return `<section id="${q.id}" class="source-question" data-answer="${parentId}" aria-label="${esc(q.source)}"><p class="eyebrow">${esc(num+' '+name)} · Pregunta</p><div class="question-content"><h2>${q.text}</h2><div class="question-context">${context}</div></div><footer class="notes-references"><ul><li>${link(esc(headings[q.sectionId]),q.sectionId)}</li></ul></footer><aside class="notes">${q.notes}<p>El material para responder se desarrolla en «${esc(h)}».</p>${notes.slides[i]}</aside></section>`;
    }).join('');
-   return divider+questionSlides+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main);
+   const recommendedVideos=videoRecommendations.map((item,n)=>item.after===i?renderVideoRecommendation(item,index,n,headings):'').join('');
+   return divider+questionSlides+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main)+recommendedVideos;
  }).join('');
  const coverTitle=index===0?'Interacción y Experiencia de Usuario':title;
  const mapSlide=index===0?'<section id="map-of-computer-science" class="map-only" data-state="map-only" data-background-image="images/cs_map.png" data-background-size="contain" data-background-color="#ffffff" aria-label="Map of Computer Science"></section>':'';
