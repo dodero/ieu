@@ -2,7 +2,7 @@
 const placement = [
  {
   '¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?': {before:7,context:true},
-  '¿Todas las UI proporcionan un comportamiento funcional determinista?': {before:5},
+  '¿Todas las UI proporcionan un comportamiento funcional determinista?': {before:8,answer:5},
   '¿Qué implica este significante?': {before:6,context:true}
  },
  {
@@ -29,7 +29,7 @@ export function collectQuestions(section,index){
     const source=block.getSource(),route=placement[index][source];
     if(!route) throw Error(`Question needs a response slide: ${source}`);
     const next=blocks[position+1];
-    questions.push({id:`question-${index}-${questions.length}`,sectionId,source,text:block.getContent(),before:route.before,
+    questions.push({id:`question-${index}-${questions.length}`,sectionId,source,text:block.getContent(),before:route.before,answer:route.answer??route.before,
      context:route.context && next?next.convert():'',notes:block.convert()});
    }
    walk(block,sectionId);
