@@ -46,3 +46,25 @@ h1{font-size:100px;line-height:1.06;max-width:1250px;margin:110px 0 45px}h2{font
 .reveal-viewport.map-only .reveal .controls,.reveal-viewport.map-only .reveal .slide-number,.reveal-viewport.map-only .reveal .progress{display:none!important}
 .reveal .slides section.map-only{padding:0!important}
 .pdf-page:has(section.map-only) .slide-number-pdf,.pdf-page:has(section.map-only) .slide-number{display:none!important}
+
+/* Source questions precede their response material on the horizontal route. */
+.source-question h2{font-size:57px;line-height:1.15;margin:40px 0 45px;max-width:1350px;color:var(--accent)}
+.question-context{font-size:32px;line-height:1.3}.question-context .sidebarblock{background:none;border:0;padding:0;margin:0}
+.question-context .ulist ul{display:grid;grid-template-columns:1fr 1fr;gap:25px 70px;margin:0 35px;padding:0 20px}
+.question-context .imageblock{text-align:center}.question-context .imageblock img{max-width:100%;height:220px;object-fit:contain}
+.question-context .sidebarblock>.content:has(>.imageblock){display:flex;gap:25px;justify-content:center;align-items:center}
+.question-context .sidebarblock>.content>.imageblock{flex:1;min-width:0}
+.question-context>.imageblock img{height:300px;max-width:70%}
+
+/* Center the question and its supporting material as a single composition. */
+.question-content{position:absolute;inset:115px 65px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:38px;text-align:center}
+.question-content h2{margin:0;max-width:1350px;text-align:center}
+.question-content .question-context{width:100%;text-align:center}
+.question-content .question-context:empty{display:none}
+.question-content .question{font-size:66px;margin:0;max-width:1250px;text-align:center}
+.question-content .prompt{margin:0;text-align:center;max-width:1200px}
+.question-content .ulist ul{list-style-position:inside;justify-items:center}
+
+.question-context .question-icon-options{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:45px;padding:0;margin:0 auto;max-width:1300px}
+.question-icon-options li{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:28px;text-align:center;font-size:32px;line-height:1.25}
+.question-icon-options .card-icon{width:145px;height:145px;color:var(--accent)}

@@ -1,3 +1,4 @@
+import { collectQuestions } from './questions.mjs';
 import { distributeNotes } from './speaker-notes.mjs';
 const decks = [
  ['Presentación',[
@@ -8,7 +9,7 @@ const decks = [
  ['Sketchpad: actuar sobre lo que se ve','image',['history-sketchpad.jpg','Dibujar → modificar → ver el resultado']],
  ['La interfaz conecta dos mundos','flow',['Persona|Percibe y decide','Interfaz|Representa y responde','Ordenador|Ejecuta funciones']],
  ['Affordance y feedback','loop',['Pista visual|¿Qué puedo hacer?','Acción|Lo intento','Respuesta|¿Qué ha ocurrido?']],
- ['Aprendibilidad: descubrir cómo actuar','compare',['Ratón|Acción indirecta','Pantalla táctil|Acción sobre el objeto','Voz|Expresar una intención']],
+ ['Aprendibilidad: descubrir cómo actuar','compare',['Ratón|Acción indirecta','Pantalla táctil|Acción sobre el objeto','Voz|Expresar una intención','Realidad virtual|Actuar en un espacio inmersivo']],
  ['Una interfaz, muchas disciplinas','hub',['Interfaz','Informática','Psicología','Diseño','Ergonomía','Lingüística','Sociología']],
  ['Pregunta para el aula','question',['¿Qué interfaz resulta más fácil de aprender?','Elegid una tarea y comparad ratón, tacto y voz.']],
  ['Temario detallado','flow',['EUD y bloques|Crear herramientas','Interacción verbal|Conversar y combinar modalidades','Entornos inmersivos|Explorar realidad virtual, aumentada y mixta','Videojuegos|Diseñar y aprender jugando','UX|Evaluar la experiencia']]
@@ -109,6 +110,7 @@ const explanations = {
  Ratón:'El movimiento de la mano controla un puntero en pantalla.',
  'Pantalla táctil':'El gesto se realiza directamente sobre la representación.',
  Voz:'La petición requiere interpretar palabras y contexto.',
+ 'Realidad virtual':'La mirada, los gestos y los mandos permiten explorar y actuar en el entorno.',
  Descomponer:'Separar una tarea compleja en problemas manejables.',
  Abstraer:'Conservar los datos y relaciones que necesita la solución.',
  Algoritmo:'Definir una secuencia de operaciones que pueda ejecutarse.',
@@ -207,6 +209,7 @@ function graphic(kind,items,title){
 export function renderDeck(index, sourceSection, headings){
  const [title,slides]=decks[index];
  const notes=distributeNotes(sourceSection,index,slides.length);
+ const questions=collectQuestions(sourceSection,index);
  const link=(text,id)=>`<a href="apuntes.html#${encodeURIComponent(id)}" target="_blank" rel="noopener">${text}</a>`;
  let previous=-1;
  const content=slides.map(([h,k,v],i)=>{
@@ -250,8 +253,15 @@ export function renderDeck(index, sourceSection, headings){
      enlargements.push(`<section id="${target}" class="image-detail" aria-label="Imagen ampliada: ${esc(h)}">${enlarged}${credit}<aside class="notes">${detailNotes}</aside><a class="image-return" href="#/${parentId}" aria-label="Volver a ${esc(h)}">Volver</a></section>`);
      return `<a class="image-zoom" href="#/${target}" aria-label="Ampliar imagen: ${esc(h)}">${media}</a>`;
    });
-   const main=`<section id="${parentId}" aria-label="${esc(h)}"><p class="eyebrow">${esc(num+' '+name)}</p><h2>${link(esc(h),id)}</h2>${visual}<footer class="notes-references"><ul>${refs.map(ref=>`<li>${link(esc(headings[ref]),ref)}</li>`).join('')}</ul></footer><aside class="notes">${notes.slides[i]}</aside></section>`;
-   return divider+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main);
+   const main=`<section id="${parentId}" aria-label="${esc(h)}"><p class="eyebrow">${esc(num+' '+name)}</p>${k==='question'?'<div class="question-content">':''}<h2>${link(esc(h),id)}</h2>${visual}${k==='question'?'</div>':''}<footer class="notes-references"><ul>${refs.map(ref=>`<li>${link(esc(headings[ref]),ref)}</li>`).join('')}</ul></footer><aside class="notes">${notes.slides[i]}</aside></section>`;
+   const questionSlides=questions.filter(q=>q.before===i).map(q=>{
+     if(!headings[q.sectionId]) throw Error(`Missing question heading ${q.sectionId}`);
+     const context=q.source==='¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?'
+       ? `<ul class="question-icon-options">${[['Ratón','Ratón'],['Pantalla táctil','Pantalla táctil'],['Voz','Interfaz de voz'],['Realidad virtual','Dispositivo de VR']].map(([symbol,label])=>`<li>${icon(symbol)}<span>${esc(label)}</span></li>`).join('')}</ul>`
+       : q.context;
+     return `<section id="${q.id}" class="source-question" data-answer="${parentId}" aria-label="${esc(q.source)}"><p class="eyebrow">${esc(num+' '+name)} · Pregunta</p><div class="question-content"><h2>${q.text}</h2><div class="question-context">${context}</div></div><footer class="notes-references"><ul><li>${link(esc(headings[q.sectionId]),q.sectionId)}</li></ul></footer><aside class="notes">${q.notes}<p>El material para responder se desarrolla en «${esc(h)}».</p>${notes.slides[i]}</aside></section>`;
+   }).join('');
+   return divider+questionSlides+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main);
  }).join('');
  const coverTitle=index===0?'Interacción y Experiencia de Usuario':title;
  const mapSlide=index===0?'<section id="map-of-computer-science" class="map-only" data-state="map-only" data-background-image="images/cs_map.png" data-background-size="contain" data-background-color="#ffffff" aria-label="Map of Computer Science"></section>':'';
