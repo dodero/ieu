@@ -231,6 +231,8 @@ A pesar de que los LLM son una tecnología clave para la interacción _verbal_ d
 
 === Un poco de teoría
 
+==== Interfaces de usuario
+
 //[icon="question54px.png"]
 NOTE: *Interfaces de usuario*
 ****
@@ -240,6 +242,8 @@ Software y hardware que salvan las diferencias entre la acciones humanas y las a
 * Comportamiento *funcional* determinista del ordenador
 * Las UI (_User Interface_) hacen un *mapping* de las capacidades sensoriales, cognitivas y sociales del humano hacia las *funciones* de la máquina
 * Las UI deben ofrecer representaciones "aprendibles" (_learnable_): algunas lo hacen y otras no
+
+==== Aprendibilidad
 
 NOTE: Learnability ("aprendibilidad")
 ****
@@ -264,6 +268,8 @@ NOTE: ¿Todas las UI proporcionan un comportamiento funcional determinista?
 //video::177977174[vimeo, width=640, height=360]
 
 
+==== Disciplinas involucradas
+
 //[icon="question54px.png"]
 NOTE: *Disciplinas involucradas*
 ****
@@ -279,6 +285,8 @@ NOTE: *Disciplinas involucradas*
 * _Information Science_ (en España, Biblioteconomía y documentación)
 * Filosofía y Antropología
 ****
+
+==== Teorías de la interacción
 
 //[icon="question54px.png"]
 NOTE: *Múltiples teorías*
@@ -297,6 +305,8 @@ NOTE: *Múltiples teorías*
 - Los modelos conceptuales se basan en la idea de que el usuario tiene una representación mental del sistema y que esta representación mental se construye a partir de la experiencia del usuario con el sistema. 
 
 - La semiótica se basa en la idea de que el usuario interpreta el sistema como un conjunto de signos. 
+
+==== Affordances y feedback
 
 //[icon="question54px.png"]
 TIP: *Affordances*  ("asequibilidades") y *feedback* (retroalimentación)
