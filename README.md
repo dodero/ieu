@@ -45,3 +45,7 @@ Las ampliaciones se agrupan en pilas verticales nativas de reveal.js: desde la c
 Los iconos de conceptos se dibujan como SVG de trazo uniforme en `scripts/slides.mjs` (mapa `conceptIcons`). El tema UX e inteligencia artificial no contiene diapositivas de ampliación. La fotografía de Sketchpad muestra a Ivan Sutherland usando el TX-2 hacia 1962–1963; fuente y crédito se registran junto al recurso y en la diapositiva ampliada.
 
 Las referencias de cada slide se eligen por su contenido, sin limitar el nivel del encabezado. `anchors` y `referenceOverrides` en `scripts/slides.mjs` indican los destinos. La generación valida que todos existan. Los subencabezados de teoría permiten enlazar directamente a interfaces de usuario, aprendibilidad, disciplinas, teorías y affordances/feedback.
+
+## HTML generado bajo control de versiones
+
+Se versionan los HTML de `dist/` junto con `slides.css`, las imágenes y los recursos locales de reveal.js necesarios para abrirlos. Los PDF permanecen excluidos y se regeneran con pnpm. Después de cambiar el contenido o el diseño, ejecuta `pnpm build` y revisa también los cambios generados en `dist/` antes de incorporarlos a Git.

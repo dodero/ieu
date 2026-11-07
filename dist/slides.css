@@ -1,0 +1,70 @@
+:root{--ink:#132e40;--accent:#067d84;--paper:#f5f3eb;--r-background-color:var(--paper);--r-main-font:Arial,sans-serif;--r-main-font-size:32px;--r-main-color:var(--ink)}
+.reveal{font-family:Arial,sans-serif;color:var(--ink);background:var(--paper)}
+.reveal .slides{text-align:left}.reveal .slides section{box-sizing:border-box;padding:55px 65px;height:900px}
+h1{font-size:100px;line-height:1.06;max-width:1250px;margin:110px 0 45px}h2{font-size:62px;line-height:1.12;margin:35px 0 65px;max-width:1350px}p{font-size:32px}.eyebrow{font-size:21px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin:0}.cover{border-left:22px solid var(--accent)}
+.diagram{display:flex;align-items:stretch;gap:16px;min-height:300px;margin-top:65px}.node{background:white;border-top:7px solid var(--accent);border-radius:5px;flex:1;padding:30px 22px;display:flex;flex-direction:column;gap:25px;min-width:0}.node strong{font-size:34px;line-height:1.15}.node span{font-size:27px;line-height:1.3}.node .number{font-size:23px;color:var(--accent);font-weight:bold}.arrow{align-self:center;color:var(--accent);font-size:40px}.timeline .node{padding:24px 14px}.timeline .node strong{font-size:29px}.compare .node{min-height:280px;padding:38px}.compare .node:nth-child(2){background:#dcebe9}.weights .node{border-radius:50%;text-align:center;justify-content:center;aspect-ratio:1;min-height:0;padding:20px}.weights .node span:last-child{font-size:42px;color:var(--accent)}
+.blocks{flex-direction:column;gap:8px;margin:0 100px;min-height:0}.blocks .node{padding:18px 30px;flex-direction:row;gap:30px;border:0;border-left:12px solid #f0b540;background:#dcebe9}.blocks .node:nth-child(even){margin-left:70px}.loop{border-bottom:6px solid var(--accent);padding-bottom:45px}.hub{display:flex;align-items:center;gap:65px;margin:50px 80px}.hub>strong{display:grid;place-items:center;border-radius:50%;background:var(--accent);color:white;width:320px;height:320px;font-size:52px}.hub>div{display:grid;grid-template-columns:1fr 1fr;gap:25px;flex:1}.hub span{background:white;padding:28px;font-size:32px;border-left:6px solid var(--accent)}figure{margin:0;text-align:center}figure img{height:430px;max-width:1100px;object-fit:contain}figcaption{font-size:32px;margin-top:20px;color:var(--accent)}.question{font-size:76px;line-height:1.15;max-width:1250px;color:var(--accent);margin-top:100px}.prompt{margin-top:65px;max-width:1200px}.autonomy{position:relative;border-bottom:16px solid var(--accent);padding-bottom:35px}.autonomy .node{background:transparent;border:0}.autonomy .node:after{content:'';height:30px;width:30px;border-radius:50%;background:var(--accent);align-self:center}.reveal .slide-number{font-size:20px;background:var(--ink)}
+
+/* All content is visible immediately; one stable composition per slide. */
+.card-icon{width:70px;height:70px;flex-shrink:0;color:var(--accent)}
+.node{gap:16px;padding:24px 20px}.node .explanation{font-size:23px;line-height:1.35;margin:0;color:#385363}.diagram{margin-top:35px;min-height:340px}
+.notes-link{position:absolute;bottom:38px;left:65px;font-size:23px;color:var(--accent);text-decoration:underline;text-underline-offset:5px}
+.timeline .card-icon,.weights .card-icon{width:48px;height:48px}.weights .node{border-radius:16px;aspect-ratio:auto;align-items:center}.weights .node strong{font-size:29px}.weights .node{padding:20px 12px}.timeline .node{gap:18px}.timeline .node span{font-size:25px}
+.blocks .card-icon{width:44px;height:44px}.blocks .node{align-items:center;padding:13px 24px}.blocks .node strong{font-size:29px}.blocks .node .explanation{max-width:620px}.blocks .node .number{min-width:35px}
+.compare .node{padding:30px}.autonomy .node strong{font-size:30px}.autonomy .node .explanation{font-size:23px}.hub .hub-label{background:white;padding:28px;font-size:32px;border-left:6px solid var(--accent)}
+.reveal .slides>section{height:900px!important;min-height:900px!important}
+
+.reveal h2 a{color:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:9px;text-decoration-color:#91b6b6}.node strong a{color:inherit;text-decoration:underline;text-underline-offset:5px}
+.notes-references{position:absolute;left:65px;right:65px;bottom:30px;border-top:1px solid #b1c7c6;padding-top:13px;color:#385363}.notes-references ul{display:flex;flex-wrap:wrap;gap:8px 28px;list-style:none;padding:0;margin:0;font-size:19px;line-height:1.3}.notes-references li+li:before{content:'· ';color:var(--accent)}
+.card-thumbnail{width:100%;height:135px;object-fit:contain;background:#eef2ef;border-radius:5px}.timeline .card-thumbnail{height:145px}.divider h1{margin-top:240px!important}.divider h1{font-size:92px;line-height:1.12;margin:0;color:var(--accent)}
+
+/* Keep slide numbering clear of the lower navigation controls. */
+.reveal .slide-number{top:18px;right:22px;bottom:auto;left:auto;z-index:40}
+.reveal .slides>.cover,.reveal .slides>.divider{text-align:center;border:0}
+.reveal .slides>.cover h1,.reveal .slides>.divider h1{position:absolute;top:50%;left:65px;right:65px;transform:translateY(-50%);margin:0!important;max-width:none}
+.cover .eyebrow{position:absolute;top:90px;left:65px;right:65px;text-align:center}
+.notes-references a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.image-zoom{display:block;color:var(--accent);line-height:0;flex-shrink:0}.image-zoom:focus-visible{outline:4px solid #cc8a00;outline-offset:4px}
+.image-zoom .card-icon{display:block}.weights .image-zoom{align-self:center}.blocks .image-zoom{display:flex;align-items:center}
+.reveal .slides>.image-detail{padding:0!important;background:var(--paper)}
+.image-detail>img,.image-detail>svg{position:absolute;inset:0;width:1600px!important;height:900px!important;max-width:none!important;max-height:none!important;object-fit:contain;color:var(--accent);margin:0}
+.image-detail>svg{padding:75px;box-sizing:border-box}
+.image-return{position:absolute;bottom:20px;left:25px;font-size:20px;color:var(--ink);background:var(--paper);padding:8px 14px;border-radius:4px}
+
+/* Each horizontal idea owns its image details as a vertical Reveal stack. */
+.reveal .slides>section.image-stack{padding:0;height:900px!important;min-height:900px!important}
+.reveal .slides>section.image-stack>section{height:900px!important;min-height:900px!important}
+.reveal .slides section.image-detail{padding:0!important;background:var(--paper)}
+.timeline .image-zoom{height:145px;width:100%;display:flex;align-items:center;justify-content:center}
+.timeline .image-zoom .card-icon{width:100%;height:145px}
+.reveal .slides section.image-detail>img{width:1600px!important;height:900px!important;object-fit:contain}
+.timeline .image-zoom .card-icon{width:120px;height:110px}
+
+.image-credit{position:absolute;right:28px;bottom:25px;font-size:18px;color:var(--ink);background:var(--paper);padding:7px 10px;max-width:1050px;text-align:right}
+
+/* The map is an image-only interlude; keyboard and touch navigation remain active. */
+.reveal-viewport.map-only .reveal .controls,.reveal-viewport.map-only .reveal .slide-number,.reveal-viewport.map-only .reveal .progress{display:none!important}
+.reveal .slides section.map-only{padding:0!important}
+.pdf-page:has(section.map-only) .slide-number-pdf,.pdf-page:has(section.map-only) .slide-number{display:none!important}
+
+/* Source questions precede their response material on the horizontal route. */
+.source-question h2{font-size:57px;line-height:1.15;margin:40px 0 45px;max-width:1350px;color:var(--accent)}
+.question-context{font-size:32px;line-height:1.3}.question-context .sidebarblock{background:none;border:0;padding:0;margin:0}
+.question-context .ulist ul{display:grid;grid-template-columns:1fr 1fr;gap:25px 70px;margin:0 35px;padding:0 20px}
+.question-context .imageblock{text-align:center}.question-context .imageblock img{max-width:100%;height:220px;object-fit:contain}
+.question-context .sidebarblock>.content:has(>.imageblock){display:flex;gap:25px;justify-content:center;align-items:center}
+.question-context .sidebarblock>.content>.imageblock{flex:1;min-width:0}
+.question-context>.imageblock img{height:300px;max-width:70%}
+
+/* Center the question and its supporting material as a single composition. */
+.question-content{position:absolute;inset:115px 65px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:38px;text-align:center}
+.question-content h2{margin:0;max-width:1350px;text-align:center}
+.question-content .question-context{width:100%;text-align:center}
+.question-content .question-context:empty{display:none}
+.question-content .question{font-size:66px;margin:0;max-width:1250px;text-align:center}
+.question-content .prompt{margin:0;text-align:center;max-width:1200px}
+.question-content .ulist ul{list-style-position:inside;justify-items:center}
+
+.question-context .question-icon-options{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:45px;padding:0;margin:0 auto;max-width:1300px}
+.question-icon-options li{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:28px;text-align:center;font-size:32px;line-height:1.25}
+.question-icon-options .card-icon{width:145px;height:145px;color:var(--accent)}

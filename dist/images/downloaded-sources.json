@@ -1,0 +1,46 @@
+[
+  {
+    "file": "history-xerox.jpg",
+    "source": "https://en.wikipedia.org/wiki/Xerox_Alto",
+    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Xero_Alto_Computer.jpg/960px-Xero_Alto_Computer.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+  },
+  {
+    "file": "history-macintosh.jpg",
+    "source": "https://en.wikipedia.org/wiki/Macintosh_128K",
+    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Computer_macintosh_128k%2C_1984_%28all_about_Apple_onlus%29.jpg/1280px-Computer_macintosh_128k%2C_1984_%28all_about_Apple_onlus%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+  },
+  {
+    "file": "history-iphone.png",
+    "source": "https://en.wikipedia.org/wiki/IPhone_(1st_generation)",
+    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/IPhone_1st_Gen.svg/960px-IPhone_1st_Gen.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+  },
+  {
+    "file": "history-chatgpt.png",
+    "source": "https://en.wikipedia.org/wiki/ChatGPT",
+    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+  },
+  {
+    "file": "logo-appinventor.png",
+    "source": "https://appinventor.mit.edu/",
+    "image": "https://appinventor.mit.edu/images/logo.png"
+  },
+  {
+    "file": "logo-n8n.png",
+    "source": "https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png"
+  },
+  {
+    "file": "logo-unity.svg",
+    "source": "https://cdn.simpleicons.org/unity"
+  },
+  {
+    "file": "logo-twine.png",
+    "source": "https://twinery.org/favicon-152.png"
+  },
+  {
+    "file": "history-sketchpad.jpg",
+    "source": "https://computerhistory.org/blog/the-remarkable-ivan-sutherland/",
+    "image": "https://computerhistory.org/wp-content/uploads/2023/01/P91-211-1024x813.jpg",
+    "credit": "Courtesy of the MIT Museum; Computer History Museum, object 102652182",
+    "description": "Ivan Sutherland using Sketchpad on the TX-2, circa 1962–1963"
+  }
+]

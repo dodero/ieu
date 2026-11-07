@@ -17,6 +17,7 @@ if(sections.length !== names.length) throw Error('Han cambiado los temas: actual
 await mkdir('dist', {recursive:true});
 await cp('images','dist/images',{recursive:true});
 await cp('node_modules/reveal.js/dist','dist/reveal.js/dist',{recursive:true,dereference:true});
+await cp('node_modules/reveal.js/LICENSE','dist/reveal.js/LICENSE');
 const browser = await chromium.launch({
  executablePath: process.env.CHROME_PATH || undefined,
  channel: process.env.CHROME_CHANNEL || undefined,

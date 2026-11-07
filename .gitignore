@@ -1,2 +1,3 @@
 node_modules/
-dist/
+# Generated HTML and its local assets are versioned; PDFs are rebuilt.
+dist/**/*.pdf
