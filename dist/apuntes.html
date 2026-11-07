@@ -433,6 +433,49 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style id="audiovisual-styles">
+/* Audiovisual open blocks: a blue counterpart to Asciidoctor sidebars. */
+.openblock.audiovisual {
+  margin: 1.25em 0;
+  padding: 1.25em;
+  border: 1px solid #abc9de;
+  border-radius: 4px;
+  background: #edf5fb;
+  color: #253e50;
+}
+.openblock.audiovisual > .title {
+  display: flex;
+  align-items: flex-start;
+  gap: .65em;
+  margin: 0 0 .85em;
+  color: #185576;
+  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.openblock.audiovisual > .title::before {
+  content: "";
+  display: inline-block;
+  flex: 0 0 1.4em;
+  width: 1.4em;
+  height: 1.35em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 28' fill='none' stroke='%23185576' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='18' rx='3'/%3E%3Cpath d='M22 11l8-5v16l-8-5z'/%3E%3Cpath d='M9 10l7 4-7 4z' fill='%23185576' stroke='none'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.openblock.audiovisual > .content > :last-child,
+.openblock.audiovisual > .content > .ulist:last-child > ul > li:last-child > p:last-child {
+  margin-bottom: 0;
+}
+.openblock.audiovisual a { color: #175d8d; }
+@media print {
+  .openblock.audiovisual {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .openblock.audiovisual > .title { break-after: avoid; }
+}
+
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -2963,7 +3006,7 @@ Lectura recomendada
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-07 21:46:37 +0100
+Last updated 2026-11-07 21:54:10 +0100
 </div>
 </div>
 <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
