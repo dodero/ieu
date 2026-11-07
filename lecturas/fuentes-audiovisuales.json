@@ -1,0 +1,265 @@
+{
+  "playlist": "https://www.youtube.com/playlist?list=PL1nxsfH0EAJrcW6mgIGellIDvSNMvU6tY",
+  "reviewed": "2026-11-07",
+  "videos": [
+    {
+      "id": "oNmJUcqISzQ",
+      "title": "La Fundación BBVA premia a Ivan Sutherland por revolucionar la interacción humano-máquina",
+      "author": "Fundación BBVA",
+      "url": "https://www.youtube.com/watch?v=oNmJUcqISzQ",
+      "sections": [
+        "Ivan Sutherland",
+        "Entornos inmersivos"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 67
+    },
+    {
+      "id": "yzMWPYTnE1Q",
+      "title": "Why Source Code is Always Text | Dan Vanderkam",
+      "author": "SquiggleConf",
+      "url": "https://www.youtube.com/watch?v=yzMWPYTnE1Q",
+      "sections": [
+        "End-User Programming",
+        "_Low code_"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 880
+    },
+    {
+      "id": "c539cK58ees",
+      "title": "Memex animation - Vannevar Bush's diagrams made real",
+      "author": "Mark Sanderson - researcher",
+      "url": "https://www.youtube.com/watch?v=c539cK58ees",
+      "sections": [
+        "Vannevar Bush"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 31
+    },
+    {
+      "id": "6orsmFndx_o",
+      "title": "Ivan Sutherland Sketchpad Demo 1963",
+      "author": "Interface Studies",
+      "url": "https://www.youtube.com/watch?v=6orsmFndx_o",
+      "sections": [
+        "Ivan Sutherland"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 449
+    },
+    {
+      "id": "9H79_kKzmFs",
+      "title": "Xerox Alto Restoration Part 17 - Xerox Alto Demo",
+      "author": "CuriousMarc",
+      "url": "https://www.youtube.com/watch?v=9H79_kKzmFs",
+      "sections": [
+        "Alan Kay"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 459
+    },
+    {
+      "id": "9qtd8Hc90Hw",
+      "title": "All the Widgets (Fixed v2) - 1990",
+      "author": "Brad Myers",
+      "url": "https://www.youtube.com/watch?v=9qtd8Hc90Hw",
+      "sections": [
+        "Alan Kay"
+      ],
+      "evidence": "publisher_description_only_complementary_viewing",
+      "transcript_segments": 0
+    },
+    {
+      "id": "hI4w8J6yauk",
+      "title": "Make Your Sketchbook Drawing Into a Digital Masterpiece with Illustrator",
+      "author": "Zimri Mayfield",
+      "url": "https://www.youtube.com/watch?v=hI4w8J6yauk",
+      "sections": [
+        "Futuro de la manipulación directa"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 186
+    },
+    {
+      "id": "4MfG9CDufPA",
+      "title": "Deep Learning Program Simplifies Your Drawings | Two Minute Papers #107",
+      "author": "Two Minute Papers",
+      "url": "https://www.youtube.com/watch?v=4MfG9CDufPA",
+      "sections": [
+        "Futuro de la manipulación directa"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 79
+    },
+    {
+      "id": "8rABwKRsec4",
+      "title": "The New Code — Sean Grove, OpenAI",
+      "author": "AI Engineer",
+      "url": "https://www.youtube.com/watch?v=8rABwKRsec4",
+      "sections": [
+        "Programación literaria",
+        "Atar en corto a la IA"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 515
+    },
+    {
+      "id": "LCEmiRjPEtQ",
+      "title": "Andrej Karpathy: Software Is Changing (Again)",
+      "author": "Y Combinator",
+      "url": "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
+      "sections": [
+        "Evolución del EUD",
+        "Atar en corto a la IA"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 1139
+    },
+    {
+      "id": "KG4ONHqF1qg",
+      "title": "The Weird Death Of User Interfaces",
+      "author": "Enrico Tartarotti",
+      "url": "https://www.youtube.com/watch?v=KG4ONHqF1qg",
+      "sections": [
+        "La IA y el futuro de las UI"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 432
+    },
+    {
+      "id": "czzAVuVz7u4",
+      "title": "Why Can't We Make Simple Software? - Peter van Hardenberg",
+      "author": "Handmade Cities",
+      "url": "https://www.youtube.com/watch?v=czzAVuVz7u4",
+      "sections": [
+        "Computational Thinking"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 1085
+    },
+    {
+      "id": "54CyHBI1d6Y",
+      "title": "Xerox - The Company That Threw Away Everything",
+      "author": "Logically Answered",
+      "url": "https://www.youtube.com/watch?v=54CyHBI1d6Y",
+      "sections": [
+        "Steve Jobs"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 195
+    },
+    {
+      "id": "z5IfJKA65Oc",
+      "title": "Demo of UX Pilot AI",
+      "author": "UX Pilot AI",
+      "url": "https://www.youtube.com/watch?v=z5IfJKA65Oc",
+      "sections": [
+        "Herramientas GUI"
+      ],
+      "evidence": "publisher_description_only_complementary_viewing",
+      "transcript_segments": 0
+    },
+    {
+      "id": "6DIXqIqtK24",
+      "title": "Designing a Mobile App From Scratch With AI (UX Pilot)",
+      "author": "Cameron Banhan",
+      "url": "https://www.youtube.com/watch?v=6DIXqIqtK24",
+      "sections": [
+        "La IA y el futuro de las UI"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 612
+    },
+    {
+      "id": "J33pVRdxWbw",
+      "title": "How Steve Jobs got the ideas of GUI from XEROX",
+      "author": "Ringo Pebam",
+      "url": "https://www.youtube.com/watch?v=J33pVRdxWbw",
+      "sections": [
+        "Steve Jobs"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 226
+    },
+    {
+      "id": "91aH8jsG4cc",
+      "title": "OpenAI just made your entire tech stack obsolete...",
+      "author": "Fireship",
+      "url": "https://www.youtube.com/watch?v=91aH8jsG4cc",
+      "sections": [
+        "El experimento de la interfaz universal"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 131
+    },
+    {
+      "id": "SzJ46YA_RaA",
+      "title": "Map of Computer Science",
+      "author": "Domain of Science",
+      "url": "https://www.youtube.com/watch?v=SzJ46YA_RaA",
+      "sections": [
+        "Disciplinas involucradas",
+        "Entornos inmersivos"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 363
+    },
+    {
+      "id": "mMMRKwGitGw",
+      "title": "Design An App With AI | UX Pilot Tips & Tricks",
+      "author": "AI Tooltip",
+      "url": "https://www.youtube.com/watch?v=mMMRKwGitGw",
+      "sections": [
+        "Herramientas GUI"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 436
+    },
+    {
+      "id": "Q07PhW5sCEk",
+      "title": "1963 Timesharing: A Solution to Computer Bottlenecks",
+      "author": "Computer History Museum",
+      "url": "https://www.youtube.com/watch?v=Q07PhW5sCEk",
+      "sections": [
+        "Interfaces de usuario"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 680
+    },
+    {
+      "id": "q_Na1SJXSBg",
+      "title": "Yesterday's Computer of Tomorrow: The Xerox Alto │Bravo Demo",
+      "author": "Computer History Museum",
+      "url": "https://www.youtube.com/watch?v=q_Na1SJXSBg",
+      "sections": [
+        "Alan Kay"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 316
+    },
+    {
+      "id": "ccT0jjd36I4",
+      "title": "When the Interface Flattens Into a Prompt",
+      "author": "Interface Studies",
+      "url": "https://www.youtube.com/watch?v=ccT0jjd36I4",
+      "sections": [
+        "Lenguaje humano"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 306
+    },
+    {
+      "id": "f32W5BEzWN0",
+      "title": "The Weird Future Of User Interfaces",
+      "author": "Enrico Tartarotti",
+      "url": "https://www.youtube.com/watch?v=f32W5BEzWN0",
+      "sections": [
+        "Características de la manipulación directa",
+        "La IA y el futuro de las UI"
+      ],
+      "evidence": "public_transcript",
+      "transcript_segments": 472
+    }
+  ]
+}
