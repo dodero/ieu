@@ -50,7 +50,6 @@ image::cs_map.png[Map of Computer Science,800,600,link=https://youtu.be/SzJ46YA_
   - *Videojuegos y aprendizaje*: Twine
   - *Usabilidad y experiencia de usuario*: Evaluación de _User eXperience_ (UX)
 * Calificación: *25%* entrega y defensa de cada bloque
-* La defensa de algunos bloques podrá hacerse con la grabación de un video
 ****
 
 ==== Bibliografía
