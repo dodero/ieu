@@ -1,10 +1,13 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { collectVideoRecommendations, renderVideoRecommendation } from './video-recommendations.mjs';
 import { collectQuestions } from './questions.mjs';
 import { distributeNotes } from './speaker-notes.mjs';
+const stylesheetVersion = createHash('sha256').update(readFileSync(new URL('./slides.css', import.meta.url))).digest('hex').slice(0, 12);
 const decks = [
  ['Presentación',[
  ['Aprender haciendo','flow',['Crear|AppInventor','Conversar|n8n','Explorar|Unity','Narrar|Twine','Evaluar|UX']],
- ['Cinco bloques, el mismo peso','weights',['EUD|20 %','Interacción verbal|20 %','Entornos inmersivos|20 %','Videojuegos|20 %','UX|20 %']],
+ ['Cuatro bloques, el mismo peso','weights',['Interacción verbal|25 %','Entornos inmersivos|25 %','Videojuegos|25 %','UX|25 %']],
  ['De los documentos a la conversación','timeline',['1945|Memex','1963|Sketchpad','1973|Xerox Alto','1984|Macintosh','2007|iPhone','2022|ChatGPT']],
  ['Memex: enlazar el conocimiento','image',['AsWeMayThink.png','Documentos → asociaciones → recuperación']],
  ['Sketchpad: actuar sobre lo que se ve','image',['history-sketchpad.jpg','Dibujar → modificar → ver el resultado']],
@@ -93,7 +96,7 @@ function thumbnail(title,label,i){
  const file=(typeof thumbnails[label]==='string' ? thumbnails[label] : null) || (Array.isArray(thumbnails[title]) ? thumbnails[title][i] : null);
  return file ? `<img class="card-thumbnail" src="images/${file}" alt="${esc(label)}: ejemplo visual" title="${file.endsWith('.svg')?'Recreación esquemática para docencia':'Imagen de los apuntes'}">` : icon(label);
 }
-const noEnlargements = new Set(['Acercar intención y acción','Dos formas de controlar','Programar con bloques','Construir mediante modelos','Lenguaje humano','Entornos inmersivos','De utilizar a crear','Cinco bloques, el mismo peso','La interfaz conecta dos mundos','Affordance y feedback','Aprendibilidad: descubrir cómo actuar','Temario detallado','End-user programming','Pensamiento computacional','Low code','Programación literaria','Herramientas GUI','Lenguajes de bloques','Lenguajes de flujo de datos','Lenguajes mixtos']);
+const noEnlargements = new Set(['Acercar intención y acción','Dos formas de controlar','Programar con bloques','Construir mediante modelos','Lenguaje humano','Entornos inmersivos','De utilizar a crear','Cuatro bloques, el mismo peso','La interfaz conecta dos mundos','Affordance y feedback','Aprendibilidad: descubrir cómo actuar','Temario detallado','End-user programming','Pensamiento computacional','Low code','Programación literaria','Herramientas GUI','Lenguajes de bloques','Lenguajes de flujo de datos','Lenguajes mixtos']);
 const historyImages=['AsWeMayThink.png','history-sketchpad.jpg','history-xerox.jpg','history-macintosh.jpg','history-iphone.png','history-chatgpt.png'];
 const productImages=['logo-appinventor.png','logo-n8n.png','logo-unity.svg','logo-twine.png'];
 const explanations = {
@@ -303,5 +306,5 @@ export function renderDeck(index, sourceSection, headings){
  }).join('');
  const coverTitle=index===0?'Interacción y Experiencia de Usuario':title;
  const mapSlide=index===0?'<section id="map-of-computer-science" class="map-only" data-state="map-only" data-background-image="images/cs_map.png" data-background-size="contain" data-background-color="#ffffff" aria-label="Map of Computer Science"></section>':'';
- return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css"></head><body><div class="reveal"><div class="slides"><section class="cover">${index===0?'':'<p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p>'}<h1>${coverTitle}</h1></section>${mapSlide}${content}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`;
+ return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover">${index===0?'':'<p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p>'}<h1>${coverTitle}</h1></section>${mapSlide}${content}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`;
 }
