@@ -297,7 +297,8 @@ export function renderDeck(index, sourceSection, headings, {parts = false} = {})
      const context=q.source==='¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?'
        ? `<ul class="question-icon-options">${[['Ratón','Ratón'],['Pantalla táctil','Pantalla táctil'],['Voz','Interfaz de voz'],['Realidad virtual','Dispositivo de VR']].map(([symbol,label])=>`<li>${icon(symbol)}<span>${esc(label)}</span></li>`).join('')}</ul>`
        : q.context;
-     const questionSlide=`<section id="${q.id}" class="source-question" data-answer="slide-${index}-${q.answer}" aria-label="${esc(q.source)}"><p class="eyebrow">${esc(num+' '+name)} · Pregunta</p><div class="question-content"><h2>${q.text}</h2><div class="question-context">${context}</div></div><footer class="notes-references"><ul><li>${link(esc(headings[q.sectionId]),q.sectionId)}</li></ul></footer><aside class="notes">${q.notes}<p>El material para responder se desarrolla en «${esc(slides[q.answer][0])}».</p>${notes.slides[q.answer]}</aside></section>`;
+     const [questionNum,questionName]=groups[index][groupFor[index][q.topic??i]];
+     const questionSlide=`<section id="${q.id}" class="source-question" data-answer="slide-${index}-${q.answer}" aria-label="${esc(q.source)}"><p class="eyebrow">${esc(questionNum+' '+questionName)} · Pregunta</p><div class="question-content"><h2>${q.text}</h2><div class="question-context">${context}</div></div><footer class="notes-references"><ul><li>${link(esc(headings[q.sectionId]),q.sectionId)}</li></ul></footer><aside class="notes">${q.notes}<p>El material para responder se desarrolla en «${esc(slides[q.answer][0])}».</p>${notes.slides[q.answer]}</aside></section>`;
      if(!q.video){
        const theories=index===0 && q.source==='¿Qué implica este significante?'
          ? renderInteractionTheories(notes,headings,link) : '';

@@ -14,7 +14,7 @@ const placement = [
   '¿Por qué _end-user_?': {before:1},
   '¿Por qué algunos ingenieros prefieren Python y otros Excel?': {before:1},
   '¿Recuerdan a Vannevar Bush?': {before:2,context:true},
-  '¿Excel usa alguna encarnación?': {before:4}
+  '¿Excel usa alguna encarnación?': {before:5,answer:4,topic:4}
  },
  {}
 ];
@@ -38,7 +38,7 @@ export function collectQuestions(section,index){
      video={id:`vimeo-${match[2]}`,title,url:match[1],poster:'images/videos/emotiv-bci.svg',posterAlt:'Ilustración didáctica de una interfaz cerebro-ordenador con EEG portátil',links:[{url:match[1],label:title}]};
     }
 
-    questions.push({id:`question-${index}-${questions.length}`,sectionId,source,text:block.getContent(),before:route.before,answer:route.answer??route.before,video,
+    questions.push({id:`question-${index}-${questions.length}`,sectionId,source,text:block.getContent(),before:route.before,answer:route.answer??route.before,topic:route.topic,video,
      context:route.context && next?next.convert():'',notes:block.convert()});
    }
    walk(block,sectionId);
