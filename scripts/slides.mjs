@@ -204,6 +204,14 @@ function icon(label){
  return `<svg class="card-icon" data-icon="${key}" viewBox="0 0 80 80" role="img" aria-label="${esc(label)}" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${paths[key]}</svg>`;
 }
 const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
+function openNoteLinksInNewWindows(html){
+ return html.replace(/<aside class="notes">[\s\S]*?<\/aside>/g,notes=>notes.replace(/<a\b([^>]*)>/gi,(_,rawAttributes)=>{
+  const attributes=rawAttributes
+   .replace(/\s+target\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi,'')
+   .replace(/\s+rel\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi,'');
+  return `<a${attributes} target="_blank" rel="noopener noreferrer">`;
+ }));
+}
 function graphic(kind,items,title){
  if(kind==='image') return `<figure><img src="images/${esc(items[0])}" alt="${esc(items[1])}"><figcaption>${esc(items[1])}</figcaption></figure>`;
  if(kind==='question') return `<div class="question">${esc(items[0])}</div><p class="prompt">${esc(items[1])}</p>`;
@@ -313,7 +321,7 @@ export function renderDeck(index, sourceSection, headings, {parts = false} = {})
  const content=coreSlides.join('')+discussionSlides.join('')+extensionSlides.join('');
  const coverTitle=index===0?'Interacción y Experiencia de Usuario':title;
  const mapSlide=index===0?'<section id="map-of-computer-science" class="map-only" data-state="map-only" data-background-image="images/cs_map.png" data-background-size="contain" data-background-color="#ffffff" aria-label="Map of Computer Science"></section>':'';
- return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover">${index===0?'':'<p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p>'}<h1>${coverTitle}</h1></section>${mapSlide}${content}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`;
+ return openNoteLinksInNewWindows(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover">${index===0?'':'<p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p>'}<h1>${coverTitle}</h1></section>${mapSlide}${content}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`);
 }
 
 const classTopics = [
@@ -354,5 +362,5 @@ export function renderClassDeck(sourceSections, headings){
   return guide+topic.core+discussion+resources;
  }).join('');
  const title='IEU · Lectura, discusión y ampliación';
- return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover"><p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p><h1>IEU</h1><p class="cover-subtitle">Leer · conversar · ampliar</p></section>${opener}${sequences}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`;
+ return openNoteLinksInNewWindows(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover"><p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p><h1>IEU</h1><p class="cover-subtitle">Leer · conversar · ampliar</p></section>${opener}${sequences}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`);
 }
