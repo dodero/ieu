@@ -55,7 +55,7 @@ image::cs_map.png[Map of Computer Science,800,600,link=https://youtu.be/SzJ46YA_
 ==== Bibliografía
 
 * Shneiderman, Plaisant, Cohen, Jacobs, Elmqvist (2018). _Designing the User Interface. Strategies for Effective Human-Computer Interaction_, 6th Edition, Pearson.
-* A. J. Ko: _User Interface Software and Technology_, http://faculty.washington.edu/ajko/books/user-interface-software-and-technology/index.html[http://faculty.washington.edu/ajko/books/user-interface-software-and-technology/index.html, window=_blank]
+* A. J. Ko: _User Interface Software and Technology_, https://faculty.washington.edu/ajko/books/user-interface-software-and-technology/[User Interface Software and Technology, window=_blank]
 * Benyon, D. (2013): _Designing Interactive Systems. A comprehensive guide to HCI, UX and interaction design_, Addison Wesley.
 
 ---
@@ -776,7 +776,7 @@ Microsoft ha incorporado https://support.microsoft.com/es-es/office/introducci%C
 
 Los entornos y lenguajes de EUD ofrecen la capacidad de *crear* con una herramienta, más allá de la capacidad de *usar* una herramienta.
 
-.*On Computing...*  https://mitpress.mit.edu/books/computing[(Rosembloom 2013), window=_blank]
+.*On Computing...*  https://direct.mit.edu/books/monograph/3743/On-ComputingThe-Fourth-Great-Scientific-Domain[(Rosenbloom 2013), window=_blank]
 [quote, Paul Rosenbloom, On Computing: The Fourth Great Scientific Domain]
 ____
 [...] incorporates both *understanding* (as is the focus in most traditional science) and *shaping* (as is the focus in engineering and other professions)

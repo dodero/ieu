@@ -329,7 +329,7 @@ export function renderDeck(index, sourceSection, headings, {parts = false} = {})
 
 const classTopics = [
  {title:'Presentación',id:'presentacion',read:['_presentación','_un_poco_de_historia','_un_poco_de_teoría'],readings:[
-  ['A. J. Ko · User Interface Software and Technology','http://faculty.washington.edu/ajko/books/user-interface-software-and-technology/index.html'],
+  ['A. J. Ko · User Interface Software and Technology','https://faculty.washington.edu/ajko/books/user-interface-software-and-technology/'],
   ['Vannevar Bush · As We May Think','https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/']
  ]},
  {title:'Estilos de interacción',id:'estilos-interaccion',read:['_estilos_de_interacción','_manipulación_directa','_lenguajes_de_comandos','_lenguajes_de_programación_visual','_lenguaje_humano','_entornos_inmersivos'],readings:[
