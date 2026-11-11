@@ -1,6 +1,6 @@
 # Interacción y Experiencia de Usuario
 
-La fuente canónica es `ieu-00-intro.adoc`. Los otros ficheros históricos se conservan como referencia.
+La fuente canónica es `ieu-00-intro.adoc`. De ella se generan los apuntes completos y un único deck para impartir la presentación y los tres temas en cuatro sesiones de aproximadamente una hora. Los ficheros históricos se conservan como referencia.
 
 ## Preparación
 
@@ -15,16 +15,19 @@ pnpm exec playwright install chromium --with-deps
 ## Generación
 
 ```sh
-pnpm build           # apuntes y presentaciones, HTML y PDF
+pnpm build           # apuntes y deck de clase, HTML y PDF
 pnpm build:notes     # apuntes completos, HTML y PDF
-pnpm build:slides    # cuatro decks reveal.js, HTML y PDF
+pnpm build:slides    # apuntes enlazados y deck integrado, HTML y PDF
+pnpm build:html      # genera el HTML y los recursos locales sin Chromium
 ```
 
-Los resultados están en `dist/`, con índice `dist/index.html`. Copiar todo ese directorio para conservar imágenes y reveal.js; el HTML funciona sin CDN. Puede usarse `CHROME_PATH` para seleccionar un Chrome ya instalado.
+Los resultados están en `dist/`: `apuntes.html` y `clase.html`, con sus PDF e índice. Copia todo ese directorio para conservar imágenes, lecturas y reveal.js; el HTML funciona sin CDN. Puede usarse `CHROME_PATH` para seleccionar un Chrome ya instalado.
+
+La dinámica propuesta es compartir primero los apuntes y pedir una idea y una pregunta por tema. En cada sesión, el deck recorre los conceptos y ejemplos existentes, reúne después las preguntas de discusión y termina con lecturas, herramientas y vídeos opcionales. La guía temporal propone 5 minutos de conexión, 15 de recorrido, 30 de discusión y 10 de síntesis.
 
 El guión visual se mantiene en `scripts/slides.mjs` y su diseño en `scripts/slides.css`. Se utilizan diagramas, imágenes del repositorio y frases breves en un lienzo 1600 × 900 (16:9), con reveal.js 6.0.2.
 
-Las notas de cada diapositiva contienen los bloques originales de los apuntes que corresponden a sus conceptos; el reparto se mantiene en `scripts/speaker-notes.mjs` y la generación comprueba que no se omite ningún bloque. Las ampliaciones históricas incluyen las notas del personaje correspondiente. Pulsa S para abrir las notas, Esc para la vista general y Ctrl+Shift+F para buscar.
+Las notas de cada diapositiva contienen los bloques originales de los apuntes que corresponden a sus conceptos; el reparto se mantiene en `scripts/speaker-notes.mjs` y la generación comprueba que no se omite ningún bloque. Pulsa S para abrir las notas, Esc para la vista general y Ctrl+Shift+F para buscar.
 
 Al modificar los apuntes, revisa también este guion editorial. Los vídeos requieren conexión y no se reproducen en PDF.
 
@@ -40,7 +43,7 @@ El generador activa el aislamiento de Chromium y bloquea las peticiones HTTP/HTT
 
 Actualizar Playwright exige regenerar el lockfile, reinstalar Chromium y repetir la generación y la revisión de avisos. Fuentes: https://github.com/microsoft/playwright/security/advisories y https://chromereleases.googleblog.com/.
 
-Las ampliaciones se agrupan en pilas verticales nativas de reveal.js: desde la composición inicial, ↓ recorre sus imágenes y → continúa con la siguiente idea horizontal. Las imágenes descargadas y sus fuentes están inventariadas en `images/downloaded-sources.json`.
+Las imágenes descargadas y sus fuentes están inventariadas en `images/downloaded-sources.json`.
 
 Los iconos de conceptos se dibujan como SVG de trazo uniforme en `scripts/slides.mjs` (mapa `conceptIcons`). El tema UX e inteligencia artificial no contiene diapositivas de ampliación. La fotografía de Sketchpad muestra a Ivan Sutherland usando el TX-2 hacia 1962–1963; fuente y crédito se registran junto al recurso y en la diapositiva ampliada.
 
@@ -50,4 +53,4 @@ Las referencias de cada slide se eligen por su contenido, sin limitar el nivel d
 
 Se versionan los HTML de `dist/` junto con `slides.css`, las imágenes y los recursos locales de reveal.js necesarios para abrirlos. Los PDF permanecen excluidos y se regeneran con pnpm. Después de cambiar el contenido o el diseño, ejecuta `pnpm build` y revisa también los cambios generados en `dist/` antes de incorporarlos a Git.
 
-La pregunta sobre comportamiento determinista incluye debajo, mediante navegación vertical de reveal.js (↓), una ficha del vídeo Emotiv enlazado en los apuntes. Se reutiliza el estilo de recomendaciones. La imagen de EEG es una ilustración didáctica local, no una captura del vídeo.
+Los vídeos recomendados se sitúan al final de la sesión de su tema; las imágenes ampliables siguen usando navegación vertical nativa de reveal.js.

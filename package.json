@@ -7,6 +7,7 @@
     "build": "node scripts/build.mjs",
     "build:notes": "node scripts/build.mjs notes",
     "build:slides": "node scripts/build.mjs slides",
+    "build:html": "node scripts/build.mjs html",
     "audit": "pnpm audit --audit-level=low"
   },
   "dependencies": {

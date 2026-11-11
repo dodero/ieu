@@ -223,7 +223,7 @@ function renderInteractionTheories(notes,headings,link){
  ];
  return `<section id="interaction-theories" class="theory-slide" aria-label="Teorías de la interacción"><p class="eyebrow">1.3 Un poco de teoría</p><h2>${link('Teorías de la interacción',anchor)}</h2><div class="theory-grid">${theories.map(([title,text,symbol])=>`<article class="theory-card">${icon(symbol)}<strong>${esc(title)}</strong><p>${esc(text)}</p></article>`).join('')}</div><footer class="notes-references"><ul><li>${link(esc(headings[anchor]),anchor)}</li></ul></footer><aside class="notes">${notes.forSection(anchor)}</aside></section>`;
 }
-export function renderDeck(index, sourceSection, headings){
+export function renderDeck(index, sourceSection, headings, {parts = false} = {}){
  const [title,slides]=decks[index];
  const notes=distributeNotes(sourceSection,index,slides.length);
  const questions=collectQuestions(sourceSection,index);
@@ -239,7 +239,8 @@ export function renderDeck(index, sourceSection, headings){
 
  const link=(text,id)=>`<a href="apuntes.html#${encodeURIComponent(id)}" target="_blank" rel="noopener">${text}</a>`;
  let previous=-1;
- const content=slides.map(([h,k,v],i)=>{
+ const coreSlides=[], discussionSlides=[], extensionSlides=[];
+ slides.forEach(([h,k,v],i)=>{
    const g=groupFor[index][i], [num,name]=groups[index][g];
    const divider=g!==previous?`<section class="divider" aria-label="${esc(num+' '+name)}"><h1>${esc(name)}</h1></section>`:'';
    previous=g;
@@ -298,13 +299,60 @@ export function renderDeck(index, sourceSection, headings){
        lead:'Observa la demostración para debatir cómo se relacionan las señales EEG, su interpretación y la respuesta de la interfaz.',
        videos:[q.video],notes:`${q.notes}<p><a href="${esc(q.video.url)}" target="_blank" rel="noopener">${esc(q.video.title)}</a></p>${notes.forSection(q.sectionId)}`
      },index,q.id,headings);
-     return `<section class="image-stack question-stack">${questionSlide}${followUp}</section>`;
+     extensionSlides.push(followUp);
+     return questionSlide;
 
-   }).join('');
-   const recommendedVideos=videoRecommendations.map((item,n)=>item.after===i?renderVideoRecommendation(item,index,n,headings):'').join('');
-   return divider+questionSlides+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main)+recommendedVideos;
- }).join('');
+   });
+   const recommendedVideos=videoRecommendations.map((item,n)=>item.after===i?renderVideoRecommendation(item,index,n,headings):'');
+   extensionSlides.push(...recommendedVideos.filter(Boolean));
+   if(k==='question') discussionSlides.push(main);
+   else coreSlides.push(divider+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main));
+   discussionSlides.push(questionSlides);
+ });
+ if(parts) return {title,core:coreSlides.join(''),discussion:discussionSlides.join(''),extensions:extensionSlides.join('')};
+ const content=coreSlides.join('')+discussionSlides.join('')+extensionSlides.join('');
  const coverTitle=index===0?'Interacción y Experiencia de Usuario':title;
  const mapSlide=index===0?'<section id="map-of-computer-science" class="map-only" data-state="map-only" data-background-image="images/cs_map.png" data-background-size="contain" data-background-color="#ffffff" aria-label="Map of Computer Science"></section>':'';
  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover">${index===0?'':'<p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p>'}<h1>${coverTitle}</h1></section>${mapSlide}${content}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`;
+}
+
+const classTopics = [
+ {title:'Presentación',id:'presentacion',read:['_presentación','_un_poco_de_historia','_un_poco_de_teoría'],readings:[
+  ['A. J. Ko · User Interface Software and Technology','http://faculty.washington.edu/ajko/books/user-interface-software-and-technology/index.html'],
+  ['Vannevar Bush · As We May Think','https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/']
+ ]},
+ {title:'Estilos de interacción',id:'estilos-interaccion',read:['_estilos_de_interacción','_manipulación_directa','_lenguajes_de_comandos','_lenguajes_de_programación_visual','_lenguaje_humano','_entornos_inmersivos'],readings:[
+  ['WIMP · conceptos y evolución','https://en.wikipedia.org/wiki/WIMP_(computing)'],
+  ['Blockly · programación visual mediante bloques','https://developers.google.com/blockly'],
+  ['Node-RED · programación basada en flujos','https://nodered.org/']
+ ]},
+ {title:'End-user development',id:'end-user-development',read:['_end_user_development','_end_user_programming','_computational_thinking','_low_code','_embodiment_o_encarnación','_programación_literaria','_herramientas'],readings:[
+  ['MIT App Inventor · capítulo de lectura (PDF)','lecturas/MITAppInventor.pdf'],
+  ['Wing · Computational Thinking (PDF)','https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf'],
+  ['Lieberman et al. · End-User Development','https://link.springer.com/chapter/10.1007/1-4020-5386-X_1']
+ ]},
+ {title:'UX e inteligencia artificial',id:'ux-inteligencia-artificial',read:['_ux_e_inteligencia_artificial','_evolución_del_eud','_la_ia_y_el_futuro_de_las_ui','_la_ia_como_sistema_operativo','_autonomía_parcial','_atar_en_corto_a_la_ia'],readings:[
+  ['Microsoft · Guidelines for Human-AI Interaction','https://www.microsoft.com/en-us/research/project/guidelines-for-human-ai-interaction/'],
+  ['NIST · AI Risk Management Framework','https://www.nist.gov/itl/ai-risk-management-framework'],
+  ['UX e inteligencia artificial · apuntes del tema','apuntes.html#_ux_e_inteligencia_artificial'],
+  ['Aplicaciones parcialmente autónomas · apuntes del tema','apuntes.html#_aplicaciones_parcialmente_autónomas'],
+  ['Atar en corto a la IA · apuntes del tema','apuntes.html#_atar_en_corto_a_la_ia']
+ ]}
+];
+
+export function renderClassDeck(sourceSections, headings){
+ const topics=classTopics.map((topic,index)=>({...topic,...renderDeck(index,sourceSections[index],headings,{parts:true})}));
+ const link=(text,id)=>`<a href="apuntes.html#${encodeURIComponent(id)}" target="_blank" rel="noopener">${esc(text)}</a>`;
+ const opener=`<section class="class-prep"><p class="eyebrow">Interacción y Experiencia de Usuario</p><h1>Una clase para leer, conversar y ampliar</h1><p class="class-lead">Antes de cada sesión, lee los apuntes del tema y anota una idea y una pregunta. En la videoconferencia usaremos las diapositivas para poner ejemplos en común, debatir y relacionar el tema con vuestra experiencia.</p><div class="topic-list">${topics.map((topic,i)=>`<a href="#/topic-guide-${i}" class="topic-link"><span>0${i+1}</span><strong>${esc(topic.title)}</strong><small>Lectura previa · sesión de 1 hora</small></a>`).join('')}</div><p class="class-note">Los apuntes completos están disponibles en <a href="apuntes.html" target="_blank" rel="noopener">HTML</a>.</p></section>`;
+ const sequences=topics.map((topic,index)=>{
+  const readingLinks=topic.read.map(id=>link(headings[id],id)).join('<span class="reading-separator">·</span>');
+  const schedule=[['5 min','Conectar con la lectura'],['15 min','Recorrer ideas y ejemplos'],['30 min','Discusión guiada'],['10 min','Síntesis y próximos pasos']];
+  const guide=`<section id="topic-guide-${index}" class="topic-guide"><p class="eyebrow">${String(index+1).padStart(2,'0')} · Sesión de 1 hora</p><h1>${esc(topic.title)}</h1><p class="prep-label">Lectura previa</p><p class="prep-links">${readingLinks}</p><p class="class-lead">Trae una idea que te haya llamado la atención y una duda. No hace falta preparar una exposición: usaremos la lectura como punto de partida para pensar juntos.</p><div class="schedule">${schedule.map(([time,label])=>`<div><strong>${time}</strong><span>${label}</span></div>`).join('')}</div></section>`;
+  const discussion=`<section class="divider"><p class="eyebrow">${esc(topic.title)}</p><h1>Preguntas para discutir</h1></section>${topic.discussion}`;
+  const readings=`<section class="class-readings"><p class="eyebrow">${esc(topic.title)} · Para ampliar</p><h2>Lecturas y herramientas</h2><ul class="reading-list">${topic.readings.map(([label,url])=>`<li><a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a></li>`).join('')}</ul><p class="class-note">Los vídeos recomendados y sus capítulos aparecen a continuación. Son materiales opcionales para profundizar después de la sesión.</p></section>`;
+  const resources=`<section class="divider"><p class="eyebrow">${esc(topic.title)}</p><h1>Para ampliar</h1></section>${readings}${topic.extensions}`;
+  return guide+topic.core+discussion+resources;
+ }).join('');
+ const title='IEU · Lectura, discusión y ampliación';
+ return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover"><p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p><h1>IEU</h1><p class="cover-subtitle">Leer · conversar · ampliar</p></section>${opener}${sequences}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`;
 }
