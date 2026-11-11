@@ -247,7 +247,9 @@ export function renderDeck(index, sourceSection, headings, {parts = false} = {})
 
  const link=(text,id)=>`<a href="apuntes.html#${encodeURIComponent(id)}" target="_blank" rel="noopener">${text}</a>`;
  let previous=-1;
- const coreSlides=[], discussionSlides=[], extensionSlides=[];
+ const orderedSlides=slides.map(()=>({before:'',main:'',after:''}));
+ const extensionSlides=[];
+ const editorialQuestionAfter=[7,8,9,6][index];
  slides.forEach(([h,k,v],i)=>{
    const g=groupFor[index][i], [num,name]=groups[index][g];
    const divider=g!==previous?`<section class="divider" aria-label="${esc(num+' '+name)}"><h1>${esc(name)}</h1></section>`:'';
@@ -289,7 +291,7 @@ export function renderDeck(index, sourceSection, headings, {parts = false} = {})
      enlargements.push(`<section id="${target}" class="image-detail" aria-label="Imagen ampliada: ${esc(h)}">${enlarged}${credit}<aside class="notes">${detailNotes}</aside><a class="image-return" href="#/${parentId}" aria-label="Volver a ${esc(h)}">Volver</a></section>`);
      return `<a class="image-zoom" href="#/${target}" aria-label="Ampliar imagen: ${esc(h)}">${media}</a>`;
    });
-   const main=`<section id="${parentId}" aria-label="${esc(h)}"><p class="eyebrow">${esc(num+' '+name)}</p>${k==='question'?'<div class="question-content">':''}<h2>${link(esc(h),id)}</h2>${visual}${k==='question'?'</div>':''}<footer class="notes-references"><ul>${refs.map(ref=>`<li>${link(esc(headings[ref]),ref)}</li>`).join('')}</ul></footer><aside class="notes">${notes.slides[i]}</aside></section>`;
+   const main=`<section id="${parentId}" aria-label="${esc(h)}"><p class="eyebrow">${esc(num+' '+name)}${k==='question'?' · Pregunta para discutir':''}</p>${k==='question'?'<div class="question-content">':''}<h2>${link(esc(h),id)}</h2>${visual}${k==='question'?'</div>':''}<footer class="notes-references"><ul>${refs.map(ref=>`<li>${link(esc(headings[ref]),ref)}</li>`).join('')}</ul></footer><aside class="notes">${notes.slides[i]}</aside></section>`;
    const questionSlides=questions.filter(q=>q.before===i).map(q=>{
      if(!headings[q.sectionId]) throw Error(`Missing question heading ${q.sectionId}`);
      const context=q.source==='¿Cuáles de las siguientes interfaces proporcionan representaciones _aprendibles_?'
@@ -313,12 +315,13 @@ export function renderDeck(index, sourceSection, headings, {parts = false} = {})
    });
    const recommendedVideos=videoRecommendations.map((item,n)=>item.after===i?renderVideoRecommendation(item,index,n,headings):'');
    extensionSlides.push(...recommendedVideos.filter(Boolean));
-   if(k==='question') discussionSlides.push(main);
-   else coreSlides.push(divider+(enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main));
-   discussionSlides.push(questionSlides);
+   orderedSlides[i].before=divider+questionSlides;
+   if(k==='question') orderedSlides[editorialQuestionAfter].after+=main;
+   else orderedSlides[i].main=enlargements.length?`<section class="image-stack">${main}${enlargements.join('')}</section>`:main;
  });
- if(parts) return {title,core:coreSlides.join(''),discussion:discussionSlides.join(''),extensions:extensionSlides.join('')};
- const content=coreSlides.join('')+discussionSlides.join('')+extensionSlides.join('');
+ const core=orderedSlides.map(slot=>slot.before+slot.main+slot.after).join('');
+ if(parts) return {title,core,extensions:extensionSlides.join('')};
+ const content=core+extensionSlides.join('');
  const coverTitle=index===0?'Interacción y Experiencia de Usuario':title;
  const mapSlide=index===0?'<section id="map-of-computer-science" class="map-only" data-state="map-only" data-background-image="images/cs_map.png" data-background-size="contain" data-background-color="#ffffff" aria-label="Map of Computer Science"></section>':'';
  return openNoteLinksInNewWindows(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover">${index===0?'':'<p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p>'}<h1>${coverTitle}</h1></section>${mapSlide}${content}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`);
@@ -356,10 +359,9 @@ export function renderClassDeck(sourceSections, headings){
   const readingLinks=topic.read.map(id=>link(headings[id],id)).join('<span class="reading-separator">·</span>');
   const schedule=[['5 min','Conectar con la lectura'],['15 min','Recorrer ideas y ejemplos'],['30 min','Discusión guiada'],['10 min','Síntesis y próximos pasos']];
   const guide=`<section id="topic-guide-${index}" class="topic-guide"><p class="eyebrow">${String(index+1).padStart(2,'0')} · Sesión de 1 hora</p><h1>${esc(topic.title)}</h1><p class="prep-label">Lectura previa</p><p class="prep-links">${readingLinks}</p><p class="class-lead">Trae una idea que te haya llamado la atención y una duda. No hace falta preparar una exposición: usaremos la lectura como punto de partida para pensar juntos.</p><div class="schedule">${schedule.map(([time,label])=>`<div><strong>${time}</strong><span>${label}</span></div>`).join('')}</div></section>`;
-  const discussion=`<section class="divider"><p class="eyebrow">${esc(topic.title)}</p><h1>Preguntas para discutir</h1></section>${topic.discussion}`;
   const readings=`<section class="class-readings"><p class="eyebrow">${esc(topic.title)} · Para ampliar</p><h2>Lecturas y herramientas</h2><ul class="reading-list">${topic.readings.map(([label,url])=>`<li><a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a></li>`).join('')}</ul><p class="class-note">Los vídeos recomendados y sus capítulos aparecen a continuación. Son materiales opcionales para profundizar después de la sesión.</p></section>`;
   const resources=`<section class="divider"><p class="eyebrow">${esc(topic.title)}</p><h1>Para ampliar</h1></section>${readings}${topic.extensions}`;
-  return guide+topic.core+discussion+resources;
+  return guide+topic.core+resources;
  }).join('');
  const title='IEU · Lectura, discusión y ampliación';
  return openNoteLinksInNewWindows(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="reveal.js/dist/reveal.css"><link rel="stylesheet" href="slides.css?v=${stylesheetVersion}"></head><body><div class="reveal"><div class="slides"><section class="cover"><p class="eyebrow">INTERACCIÓN Y EXPERIENCIA DE USUARIO</p><h1>IEU</h1><p class="cover-subtitle">Leer · conversar · ampliar</p></section>${opener}${sequences}</div></div><script src="reveal.js/dist/reveal.js"></script><script src="reveal.js/dist/plugin/notes.js"></script><script src="reveal.js/dist/plugin/search.js"></script><script>Reveal.initialize({width:1600,height:900,navigationMode:'default',margin:0.04,center:false,hash:true,slideNumber:'c/t',transition:'none',autoAnimate:false,fragments:false,pdfSeparateFragments:false,pdfMaxPagesPerSlide:1,plugins:[RevealNotes,RevealSearch]});</script></body></html>`);

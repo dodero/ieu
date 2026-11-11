@@ -23,7 +23,7 @@ pnpm build:html      # genera el HTML y los recursos locales sin Chromium
 
 Los resultados están en `dist/`: `apuntes.html` y `clase.html`, con sus PDF e índice. Copia todo ese directorio para conservar imágenes, lecturas y reveal.js; el HTML funciona sin CDN. Puede usarse `CHROME_PATH` para seleccionar un Chrome ya instalado.
 
-La dinámica propuesta es compartir primero los apuntes y pedir una idea y una pregunta por tema. En cada sesión, el deck recorre los conceptos y ejemplos existentes, reúne después las preguntas de discusión y termina con lecturas, herramientas y vídeos opcionales. La guía temporal propone 5 minutos de conexión, 15 de recorrido, 30 de discusión y 10 de síntesis.
+La dinámica propuesta es compartir primero los apuntes y pedir una idea y una pregunta por tema. Las preguntas de discusión aparecen junto al concepto correspondiente; cada sesión termina con lecturas, herramientas y vídeos opcionales. La guía temporal propone 5 minutos de conexión, 15 de recorrido, 30 de discusión y 10 de síntesis.
 
 El guión visual se mantiene en `scripts/slides.mjs` y su diseño en `scripts/slides.css`. Se utilizan diagramas, imágenes del repositorio y frases breves en un lienzo 1600 × 900 (16:9), con reveal.js 6.0.2.
 
